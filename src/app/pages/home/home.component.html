@@ -1,19 +1,15 @@
-<!-- HEADER / NAVBAR -->
+<!-- HEADER -->
 <app-header></app-header>
 
+<!-- HEADER / TITLE SECTION -->
 <section class="title-section">
-  <!-- Imagen de fondo -->
   <img
-    [src]="getImageUrl('assets/images/homeHeader.jpeg')"
+    src="assets/images/homeHeader.jpeg"
     alt="Sports championship background"
     loading="lazy"
     class="title-bg"
   />
-
-  <!-- Overlay -->
   <div class="title-overlay"></div>
-
-  <!-- Contenido -->
   <div class="container title-content">
     <h1 class="display-5 fw-bold text-white">
       App Organizador de eventos deportivos
@@ -25,7 +21,6 @@
 <section class="sports-section">
   <div class="container">
     <h2 class="fw-bold mb-4">Próximos Campeonatos</h2>
-
     <div class="row g-4">
       <div
         class="col-12 col-sm-6 col-lg-4 col-xl-3"
@@ -34,9 +29,8 @@
         <div class="sport-card shadow-sm h-100">
           <div
             class="sport-image"
-            [style.backgroundImage]="'url(' + getImageUrl(sport.image) + ')'"
+            [style.backgroundImage]="'url(' + sport.image + ')'"
           ></div>
-
           <div class="sport-body" [ngClass]="sport.color">
             <h5 class="text-white fw-bold mb-1">{{ sport.name }}</h5>
             <small class="text-white-50">{{ sport.nextEvent }}</small>
@@ -47,19 +41,18 @@
   </div>
 </section>
 
+<!-- FEATURES -->
 <section class="features">
   <div class="feature-card">
     <div class="feature-icon icon-league">🏆</div>
     <h4>Crea y compite</h4>
     <p>Crea y apúntate a ligas de tu deporte favorito</p>
   </div>
-
   <div class="feature-card">
     <div class="feature-icon icon-notify">🔔</div>
     <h4>Notificaciones</h4>
     <p>Recibe notificaciones de los partidos y resultados</p>
   </div>
-
   <div class="feature-card">
     <div class="feature-icon icon-free">🎉</div>
     <h4>Totalmente gratis</h4>
@@ -67,4 +60,5 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <app-footer></app-footer>

@@ -29,6 +29,9 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "docs",
+              "optimization": true,
+              "sourceMap": false,
               "baseHref": "/sportscenterchampionships/",
               "budgets": [
                 {
