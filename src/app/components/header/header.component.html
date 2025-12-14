@@ -19,16 +19,15 @@
     <!-- ESPACIADOR -->
     <div class="flex-grow-1"></div>
 
-    <!-- MÓVIL: Logout + Avatar -->
+    <!-- MÓVIL: Logout + Avatar / Login -->
     <div class="d-lg-none d-flex align-items-center gap-2">
-      <ng-container *ngIf="user$ | async as user">
+      <ng-container *ngIf="user$ | async as user; else showLogin">
         <button
           class="btn btn-light btn-sm rounded-pill fw-bold"
           (click)="logout()"
         >
           Logout
         </button>
-
         <img
           [src]="
             user.user_metadata?.avatar_url || 'assets/images/default-avatar.png'
@@ -37,6 +36,15 @@
           class="user-avatar"
         />
       </ng-container>
+
+      <ng-template #showLogin>
+        <button
+          class="btn btn-light btn-sm rounded-pill fw-bold"
+          (click)="loginWithGoogle()"
+        >
+          Login
+        </button>
+      </ng-template>
     </div>
 
     <!-- MENÚ PRINCIPAL -->
