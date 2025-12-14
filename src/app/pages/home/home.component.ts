@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { environment } from '../../../enviroments/enviroment';
 
 interface Sport {
   id: number;
@@ -19,6 +20,8 @@ interface Sport {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
+  baseHref = environment.production ? '/sportscenterchampionships/' : '/';
+
   sports: Sport[] = [
     {
       id: 4,
@@ -49,5 +52,8 @@ export class HomeComponent {
       nextEvent: '20 Sep · 18:00',
     },
   ];
-  
+
+  getImageUrl(relativePath: string) {
+    return this.baseHref + relativePath;
+  }
 }

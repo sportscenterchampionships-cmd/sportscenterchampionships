@@ -4,7 +4,7 @@
 <section class="title-section">
   <!-- Imagen de fondo -->
   <img
-    src="assets/images/homeHeader.jpeg"
+    [src]="getImageUrl('assets/images/homeHeader.jpeg')"
     alt="Sports championship background"
     loading="lazy"
     class="title-bg"
@@ -34,7 +34,7 @@
         <div class="sport-card shadow-sm h-100">
           <div
             class="sport-image"
-            [style.backgroundImage]="'url(' + sport.image + ')'"
+            [style.backgroundImage]="'url(' + getImageUrl(sport.image) + ')'"
           ></div>
 
           <div class="sport-body" [ngClass]="sport.color">
@@ -66,6 +66,5 @@
     <p>Sin ningún coste, ahora y siempre</p>
   </div>
 </section>
-
 
 <app-footer></app-footer>

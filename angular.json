@@ -14,7 +14,6 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "docs",
-            "baseHref": "/sportscenterchampionships/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -30,6 +29,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/sportscenterchampionships/",
               "budgets": [
                 {
                   "type": "initial",
@@ -45,6 +45,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "baseHref": "/",
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
