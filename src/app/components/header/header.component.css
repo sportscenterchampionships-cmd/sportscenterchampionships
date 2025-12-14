@@ -1,0 +1,56 @@
+/* Navbar */
+.main-navbar {
+  background: linear-gradient(90deg, #7fa9c4, #8fbf9f); /* azul + verde suave */
+  padding: 0.5rem 1rem;
+}
+
+/* Botones login / signup */
+.btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-light {
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: #f0f0f0;
+}
+
+/* Imagen usuario */
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+/* Dropdown perfil */
+.navbar-nav .dropdown-menu {
+  min-width: 150px;
+  border-radius: 0.5rem;
+}
+
+.navbar .btn-sm {
+  padding: 0.35rem 1rem;
+  font-size: 0.875rem;
+}
+
+.main-navbar .navbar-toggler {
+  border: none;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}

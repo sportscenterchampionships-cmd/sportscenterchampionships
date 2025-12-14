@@ -1,0 +1,166 @@
+/* Pádel */
+.color-padel {
+  background-color: #7fa9c4;
+  color: #ffffff;
+}
+
+/* Fútbol */
+.color-futbol {
+  background-color: #8fbf9f;
+  color: #ffffff;
+}
+
+/* Baloncesto */
+.color-baloncesto {
+  background-color: #f2b36d;
+  color: #ffffff;
+}
+
+/* Tenis (tierra batida) */
+.color-tenis {
+  background-color: #c97a5a;
+  color: #ffffff;
+}
+
+.title-section {
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* Imagen de fondo real */
+.title-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+/* 
+/* Overlay oscuro *
+.title-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.85)
+  );
+} */
+
+/* Contenido */
+.title-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.sports-section {
+  margin-top: 0.5rem;
+}
+
+/* SPORTS */
+.sport-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sport-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sport-image {
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+.sport-body {
+  padding: 16px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 1.2rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.icon-league {
+  background: linear-gradient(135deg, #7fa9c4, #6c96b1);
+}
+
+.icon-notify {
+  background: linear-gradient(135deg, #8fbf9f, #7eaf90);
+}
+
+.icon-free {
+  background: linear-gradient(135deg, #f2b36d, #c97a5a);
+}
+
+.feature-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .features {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title-section {
+    margin-top: 3.4rem;
+    height: 10vh;
+  }
+
+  .title-content h1 {
+    font-size: 2rem;
+  }
+}
