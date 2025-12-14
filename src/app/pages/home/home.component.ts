@@ -20,7 +20,7 @@ interface Sport {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  baseHref = environment.production ? '/sportscenterchampionships/' : '/';
+  baseHref = environment.production ? 'sportscenterchampionships/' : '/';
 
   sports: Sport[] = [
     {
