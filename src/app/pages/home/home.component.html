@@ -1,26 +1,136 @@
-<!-- HEADER -->
-<app-header></app-header>
+<!-- HERO HEADER -->
+<section class="hero-header">
+  <app-header></app-header>
 
-<!-- HEADER / TITLE SECTION -->
-<section class="title-section">
-  <img
-    src="assets/images/homeHeader.jpeg"
-    alt="Sports championship background"
-    loading="lazy"
-    class="title-bg"
-  />
-  <div class="title-overlay"></div>
-  <div class="container title-content">
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
     <h1 class="display-5 fw-bold text-white">
-      App Organizador de eventos deportivos
+      App organizador de eventos deportivos
     </h1>
+    <p class="text-white-50 mt-2">
+      Crea, gestiona y compite en ligas de tu deporte favorito
+    </p>
   </div>
 </section>
+
+
+<!-- NEXT GAMES SECTION -->
+<!-- <section class="next-games-section">
+  <div class="container">
+    <h2 class="fw-bold mb-4">Próximos partidos</h2>
+
+    <div
+      id="nextGamesCarousel"
+      class="carousel slide"
+      data-bs-touch="true"
+      data-bs-interval="false"
+    >
+      <div class="carousel-inner">
+
+        <div
+          class="carousel-item"
+          *ngFor="let game of games; let first = first"
+          [class.active]="first"
+        >
+          <div class="next-game-card shadow-sm">
+            <img
+              [src]="getGameImage(game.type)"
+              class="next-game-img"
+              alt="Campo de juego"
+            />
+
+            <div class="next-game-overlay">
+              <div class="next-game-info">
+                <span class="badge bg-dark mb-2 text-uppercase">
+                  {{ game.type }}
+                </span>
+
+                <h5 class="fw-bold mb-1">
+                  {{ game.team1_name }} vs {{ game.team2_name }}
+                </h5>
+
+                <small>
+                  {{ game.date | date: 'dd MMM yyyy · HH:mm' }}
+                </small>
+                <br />
+                <small class="text-white-50">
+                  📍 {{ game.location }}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Controls (solo desktop) --
+      <button
+        class="carousel-control-prev d-none d-md-flex"
+        type="button"
+        data-bs-target="#nextGamesCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button
+        class="carousel-control-next d-none d-md-flex"
+        type="button"
+        data-bs-target="#nextGamesCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section> -->
+
+<!-- NEXT GAMES SECTION -->
+<section class="next-games-section">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Próximos partidos</h2>
+
+    <div class="next-games-scroll">
+      <div
+        class="next-game-card"
+        *ngFor="let game of games"
+      >
+        <img
+          [src]="getGameImage(game.type)"
+          class="next-game-img"
+          alt="Campo de juego"
+        />
+
+        <div class="next-game-overlay">
+          <div class="next-game-info">
+            <small class="badge bg-dark text-uppercase mb-1">
+              {{ game.type }}
+            </small>
+
+            <div class="fw-semibold small">
+              {{ game.team1_name }} vs {{ game.team2_name }}
+            </div>
+
+            <small class="text-white-50">
+              {{ game.date | date: 'dd MMM · HH:mm' }}
+            </small>
+            <br />
+            <small class="text-white-50">
+              📍 {{ game.location }}
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- SPORTS SECTION -->
 <section class="sports-section">
   <div class="container">
-    <h2 class="fw-bold mb-4">Próximos Campeonatos</h2>
+    <h2 class="fw-bold mb-4">Deportes</h2>
     <div class="row g-4">
       <div
         class="col-12 col-sm-6 col-lg-4 col-xl-3"
@@ -41,24 +151,39 @@
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features">
-  <div class="feature-card">
-    <div class="feature-icon icon-league">🏆</div>
-    <h4>Crea y compite</h4>
-    <p>Crea y apúntate a ligas de tu deporte favorito</p>
-  </div>
-  <div class="feature-card">
-    <div class="feature-icon icon-notify">🔔</div>
-    <h4>Notificaciones</h4>
-    <p>Recibe notificaciones de los partidos y resultados</p>
-  </div>
-  <div class="feature-card">
-    <div class="feature-icon icon-free">🎉</div>
-    <h4>Totalmente gratis</h4>
-    <p>Sin ningún coste, ahora y siempre</p>
+<!-- FEATURES --><!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <div class="row g-4 text-center">
+
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="feature-icon icon-league">🏆</div>
+          <h5>Crea y compite</h5>
+          <p>Crea y apúntate a ligas de tu deporte favorito</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="feature-icon icon-notify">🔔</div>
+          <h5>Notificaciones</h5>
+          <p>Recibe avisos de partidos, resultados y cambios</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="feature-item">
+          <div class="feature-icon icon-free">🎉</div>
+          <h5>100% gratis</h5>
+          <p>Sin costes ocultos, ahora y siempre</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
+
 
 <!-- FOOTER -->
 <app-footer></app-footer>

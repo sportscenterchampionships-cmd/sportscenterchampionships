@@ -26,9 +26,9 @@ export class SupabaseService {
   signInWithGoogle() {
     return this.supabase.auth.signInWithOAuth({
       provider: 'google',
-      // options: {
-      //   redirectTo: window.location.origin
-      // }
+      options: {
+        redirectTo: window.location.origin + '/sportscenterchampionships/',
+      }
     });
     // https://xnhkyqflvfqjbmcbzzct.supabase.co/auth/v1/callback
   }

@@ -22,6 +22,57 @@
   color: #ffffff;
 }
 
+
+/* HERO HEADER */
+.hero-header {
+  position: relative;
+  min-height: 45vh;
+  background-image: url("/assets/images/homeHeader.jpeg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Overlay oscuro */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.5)
+  );
+  z-index: 1;
+}
+
+/* Contenido */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding-bottom: 3rem;
+  max-width: 720px;
+}
+
+@media (max-width: 768px) {
+  .hero-header {
+    min-height: 30vh;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
 .title-section {
   position: relative;
   height: 40vh;
@@ -39,7 +90,7 @@
   object-fit: cover;
   z-index: 0;
 }
-/* 
+/*
 /* Overlay oscuro *
 .title-overlay {
   position: absolute;
@@ -84,7 +135,7 @@
 .sport-body {
   padding: 16px;
 }
-
+/*
 .features {
   display: grid;
   grid-template-columns: 1fr;
@@ -118,7 +169,76 @@
   justify-content: center;
   font-size: 1.7rem;
   color: #fff;
+} */
+
+/* FEATURES - new design */
+.features-section {
+  padding: 3rem 0;
+  background-color: #f8f9fa;
 }
+
+.feature-item {
+  padding: 1.75rem 1.25rem;
+  border-radius: 16px;
+  background: #ffffff;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+/* Reutilizamos tus colores */
+.icon-league {
+  background: linear-gradient(135deg, #7fa9c4, #6c96b1);
+}
+
+.icon-notify {
+  background: linear-gradient(135deg, #8fbf9f, #7eaf90);
+}
+
+.icon-free {
+  background: linear-gradient(135deg, #f2b36d, #c97a5a);
+}
+
+.feature-item h5 {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #222;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Mobile refinement */
+@media (max-width: 576px) {
+  .feature-item {
+    padding: 1.25rem;
+  }
+
+  .feature-item p {
+    font-size: 0.85rem;
+  }
+}
+
 
 .icon-league {
   background: linear-gradient(135deg, #7fa9c4, #6c96b1);
@@ -162,5 +282,156 @@
 
   .title-content h1 {
     font-size: 2rem;
+  }
+}
+
+/* SPORTS - mobile grid 2x2 */
+.sport-image {
+  height: 110px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .sports-section .row > div {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .sport-body {
+    padding: 12px;
+  }
+
+  .sport-body h5 {
+    font-size: 0.95rem;
+  }
+
+  .sport-body small {
+    font-size: 0.75rem;
+  }
+}
+
+/* Desktop mantiene tamaño */
+@media (min-width: 768px) {
+  .sport-image {
+    height: 180px;
+  }
+}
+
+
+
+
+
+
+
+/* NEXT GAMES
+.next-games-section {
+  padding: 3rem 0;
+}
+
+.next-game-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.next-game-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+/* Overlay *
+.next-game-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.1)
+  );
+  display: flex;
+  align-items: flex-end;
+}
+
+.next-game-info {
+  padding: 1.2rem;
+  color: #fff;
+}
+
+/* Desktop *
+@media (min-width: 768px) {
+  .next-game-img {
+    height: 300px;
+  }
+
+  .next-game-card {
+    max-width: 520px;
+  }
+} */
+
+/* NEXT GAMES - horizontal scroll */
+.next-games-section {
+  padding: 2.5rem 0;
+}
+
+.next-games-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+
+.next-games-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.next-game-card {
+  flex: 0 0 70%;
+  max-width: 70%;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.next-game-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+/* Overlay */
+.next-game-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  align-items: flex-end;
+}
+
+.next-game-info {
+  padding: 0.75rem;
+  color: #fff;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .next-games-scroll {
+    overflow: visible;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .next-game-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
   }
 }
