@@ -58,7 +58,7 @@
 
 @media (max-width: 768px) {
   .hero-header {
-    min-height: 30vh;
+    min-height:23vh;
   }
 
   .hero-content h1 {
