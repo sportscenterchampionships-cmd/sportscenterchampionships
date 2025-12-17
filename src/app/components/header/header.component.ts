@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { SupabaseService } from '../../core/supabase.service';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,14 @@ export class HeaderComponent {
 
   constructor(
     private authService: AuthService,
-    private supabase: SupabaseService
+    private supabase: SupabaseService,
+    private router: Router
   ) {
     this.user$ = this.authService.user$;
+  }
+
+  login() {
+    this.router.navigateByUrl('/login');
   }
 
   logout() {

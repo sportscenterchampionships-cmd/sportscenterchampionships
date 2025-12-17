@@ -1,0 +1,62 @@
+<div class="login-container">
+  <div class="login-card shadow">
+
+    <h2 class="mb-4 text-center">Iniciar sesión</h2>
+
+    <!-- ERROR -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <!-- EMAIL -->
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="email"
+        placeholder="tu@email.com"
+      />
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="mb-3">
+      <label class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        [(ngModel)]="password"
+        placeholder="••••••••"
+      />
+    </div>
+
+    <!-- LOGIN -->
+    <button
+      class="btn btn-primary w-100 mb-3"
+      (click)="loginWithEmail()"
+      [disabled]="loading"
+    >
+      Entrar
+    </button>
+
+    <div class="separator">o</div>
+
+    <!-- GOOGLE -->
+    <button
+      class="btn btn-outline-dark w-100 mb-3 d-flex align-items-center justify-content-center gap-2"
+      (click)="loginWithGoogle()"
+    >
+      <img src="assets/icons/google-icon.svg" width="18" />
+      Entrar con Google
+    </button>
+
+    <!-- REGISTER -->
+    <p class="text-center mt-3">
+      ¿No tienes cuenta?
+      <a class="register-link" (click)="goToOnboarding()">
+        Darse de alta
+      </a>
+    </p>
+
+  </div>
+</div>

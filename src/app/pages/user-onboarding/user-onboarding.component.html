@@ -1,85 +1,101 @@
-<div class="onboarding-container">
-    <h2>Completa tu perfil</h2>
-    <p class="subtitle">
-      Solo un paso más para empezar a competir
-    </p>
-  
+<div class="onboarding-hero">
+  <div class="overlay"></div>
+
+  <div class="onboarding-card">
+    <h2>Bienvenido 👋</h2>
+    <p class="subtitle">Crea tu perfil y empieza a competir</p>
+
     <form (ngSubmit)="saveProfile()" #form="ngForm">
-      <!-- Nombre -->
-      <div class="form-group">
-        <label>Nombre</label>
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          [(ngModel)]="profile.name"
-          required
+
+      <!-- AVATAR -->
+      <div class="avatar-upload">
+        <img
+          class="avatar-preview"
+          [src]="profile.avatar_url || 'assets/images/default-avatar.jpg'"
+          alt="Avatar"
         />
+
+        <label class="upload-btn">
+          Cambiar foto
+          <input
+            type="file"
+            hidden
+            accept="image/*"
+            (change)="onAvatarSelected($event)"
+          />
+        </label>
       </div>
-  
-      <!-- Email (readonly) -->
-      <div class="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control"
-          [value]="profile.email"
-          disabled
-        />
-      </div>
-  
-      <!-- Teléfono -->
-      <div class="form-group">
-        <label>Teléfono</label>
-        <input
-          type="tel"
-          class="form-control"
-          name="phone"
-          [(ngModel)]="profile.phone"
-        />
-      </div>
-  
-      <!-- Avatar -->
-      <div class="form-group">
-        <label>Avatar (URL)</label>
-        <input
-          type="text"
-          class="form-control"
-          name="avatar"
-          [(ngModel)]="profile.avatar_url"
-        />
-      </div>
-  
-      <!-- Deportes -->
-      <h4 class="section-title">Deportes que practicas</h4>
-  
-      <div class="sports-grid">
-        <div class="sport-card" *ngFor="let sport of sports">
-          <label>
-            <input
-              type="checkbox"
-              [(ngModel)]="sport.selected"
-              name="sport-{{ sport.key }}"
-            />
-            {{ sport.label }}
-          </label>
-  
-          <select
-            *ngIf="sport.selected"
-            [(ngModel)]="sport.level"
-            name="level-{{ sport.key }}"
-            class="form-select"
+
+      <!-- NOMBRE -->
+      <input
+        class="form-control mb-3"
+        placeholder="Nombre"
+        [(ngModel)]="profile.name"
+        name="name"
+        required
+      />
+
+      <!-- EMAIL -->
+      <input
+        class="form-control mb-3"
+        [value]="profile.email"
+      />
+
+      <!-- PASSWORD -->
+      <input
+        type="password"
+        class="form-control mb-3"
+        placeholder="Contraseña"
+        [(ngModel)]="profile.password"
+        name="password"
+        required
+      />
+
+      <!-- IDIOMA -->
+      <select
+        class="form-select mb-4"
+        [(ngModel)]="profile.language"
+        name="language"
+      >
+        <option value="es">🇪🇸 Español</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="ca"> Valencià</option>
+      </select>
+
+      <!-- DEPORTES -->
+      <h4 class="section-title">Deportes</h4>
+
+      <div class="row g-3 mb-4">
+        <div
+          class="col-6 col-md-3"
+          *ngFor="let sport of sports"
+        >
+          <div
+            class="sport-card"
+            [class.selected]="sport.selected"
+            (click)="toggleSport(sport)"
           >
-            <option value="">Nivel</option>
-            <option value="Principiante">Principiante</option>
-            <option value="Intermedio">Intermedio</option>
-            <option value="Avanzado">Avanzado</option>
-          </select>
+            <div
+              class="sport-image"
+              [style.backgroundImage]="'url(' + sport.image + ')'"
+            ></div>
+
+            <div class="sport-body" [ngClass]="sport.color">
+              <span>{{ sport.name }}</span>
+            </div>
+          </div>
         </div>
       </div>
-  
-      <button class="btn-primary" type="submit" [disabled]="!form.valid">
-        Guardar perfil
+
+      <!-- SUBMIT -->
+      <button
+        class="btn-primary"
+        type="submit"
+        [disabled]="loading || !form.valid"
+      >
+        Crear cuenta
       </button>
+
     </form>
   </div>
+</div>

@@ -16,7 +16,7 @@ export class SupabaseService {
     );
   }
 
-  signIn(email: string, password: string) {
+  signInWithEmail(email: string, password: string) {
     return this.supabase.auth.signInWithPassword({
       email,
       password,
@@ -36,4 +36,16 @@ export class SupabaseService {
   get client() {
     return this.supabase;
   }
+
+  getPublicAvatarUrl(path: string) {
+    return this.supabase.storage
+      .from('avatars')
+      .getPublicUrl(path).data.publicUrl;
+  }
+
+  uploadAvatar(filePath: string, file: File) {
+    return this.supabase.storage.from('avatars').upload(filePath, file);
+  }
+
+
 }

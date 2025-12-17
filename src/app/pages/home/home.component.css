@@ -27,7 +27,7 @@
 .hero-header {
   position: relative;
   min-height: 45vh;
-  background-image: url("/assets/images/homeHeader.jpeg");
+  background-image: url("/sportscenterchampionships/assets/images/homeHeader.jpeg");
   background-size: cover;
   background-position: center;
   display: flex;
