@@ -9,6 +9,8 @@ interface SportCard {
   image: string;
   color: string;
   selected: boolean;
+  level?: string;
+  disabled?: boolean;
   }
 @Component({
   selector: 'app-user-onboarding',
@@ -30,41 +32,56 @@ export class UserOnboardingComponent {
     phone: '',
     language: 'es',
     avatar_url: '',
+    zone: '',
+    city: '',
+    position: '',
+    birthdate: '',
+    gender: '',
+    notifications: true
   };
 
   loading = false;
 
 
 sports: SportCard[] = [
-{
-key: 'padel',
-name: 'Pádel',
-image: 'assets/images/sports/padel/padel-player-man.jpeg',
-color: 'color-padel',
-selected: false,
-},
-{
-key: 'tennis',
-name: 'Tenis',
-image: 'assets/images/sports/tennis/tennis-player-woman.jpeg',
-color: 'color-tenis',
-selected: false,
-},
-{
-key: 'basket',
-name: 'Baloncesto',
-image: 'assets/images/sports/basket/basket-player-man.jpeg',
-color: 'color-basket',
-selected: false,
-},
-{
-key: 'football',
-name: 'Fútbol',
-image: 'assets/images/sports/football/football-player-woman.jpeg',
-color: 'color-football',
-selected: false,
-},
+  {
+  key: 'padel',
+  name: 'Pádel',
+  image: 'assets/images/sports/padel/padel-player-man.jpeg',
+  color: 'color-padel',
+  selected: false,
+  level: '',
+  disabled: false,
+  },
+  {
+  key: 'tennis',
+  name: 'Tenis',
+  image: 'assets/images/sports/tennis/tennis-player-woman.jpeg',
+  color: 'color-tenis',
+  selected: false,
+  level: '',
+  disabled: false,
+  },
+  {
+  key: 'basket',
+  name: 'Baloncesto',
+  image: 'assets/images/sports/basket/basket-player-man.jpeg',
+  color: 'color-baloncesto',
+  selected: false,
+  level: '',
+  disabled: true,
+  },
+  {
+  key: 'football',
+  name: 'Fútbol',
+  image: 'assets/images/sports/football/football-player-woman.jpeg',
+  color: 'color-futbol',
+  selected: false,
+  level: '',
+  disabled: true,
+  },
 ];
+
 
 
 constructor(private supabase: SupabaseService) {}
@@ -85,23 +102,32 @@ this.profile.avatar_url = this.supabase.getPublicAvatarUrl(filePath);
 }
 
 
-toggleSport(sport: SportCard) {
-sport.selected = !sport.selected;
+toggleSport(sport: any) {
+  if (sport.disabled) {
+    return;
+  }
+
+  sport.selected = !sport.selected;
+
+  if (!sport.selected) {
+    sport.level = '';
+  }
 }
 
 
-async saveProfile() {
-this.loading = true;
 
+  async saveProfile() {
+    this.loading = true;
+    const selectedSports = this.sports
+      .filter(s => s.selected)
+      .map(s => ({
+        sport: s.key,
+        level: s.level,
+      }));
 
-const selectedSports = this.sports
-.filter((s) => s.selected)
-.map((s) => s.key);
+    console.log('Perfil:', this.profile);
+    console.log('Deportes:', selectedSports);
 
-
-console.log('Perfil:', this.profile);
-console.log('Deportes:', selectedSports);
-
-}
+  }
 
 }
