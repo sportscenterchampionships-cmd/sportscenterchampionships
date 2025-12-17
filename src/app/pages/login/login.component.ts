@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SupabaseService } from '../../core/supabase.service';
+import { SupabaseService } from '../../services/core/supabase.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent {
     this.loading = true;
     this.error = null;
 
-    const { error } = await this.supabase.signInWithEmail(
+    const { data, error } = await this.supabase.signInWithEmail(
       this.email,
       this.password
     );
@@ -35,11 +35,21 @@ export class LoginComponent {
 
     if (error) {
       this.error = error.message;
+    } else if (data?.user) {
+      // Redirige al dashboard si login OK
+      this.router.navigate(['/dashboard']);
     }
   }
 
   async loginWithGoogle() {
-    await this.supabase.signInWithGoogle();
+    const { data, error } = await this.supabase.signInWithGoogle();
+
+    if (error) {
+      this.error = error.message;
+    } else if (data?.url) {
+      // Redirige al dashboard si login OK
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   goToOnboarding() {

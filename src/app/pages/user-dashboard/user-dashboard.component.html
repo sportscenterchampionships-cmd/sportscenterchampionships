@@ -1,0 +1,86 @@
+<header class="dashboard-header">
+  <div class="user-info">
+    <img [src]="user.avatar" class="avatar" />
+    <div>
+      <h3>Hola, {{ user.name }}</h3>
+      <span class="subtitle">Bienvenido de nuevo</span>
+    </div>
+  </div>
+
+  <button class="notif-btn">
+    🔔
+    <span class="badge"></span>
+  </button>
+</header>
+
+<section class="section">
+  <h4>Mis equipos</h4>
+
+  <div class="horizontal-scroll">
+    <div *ngIf="teams.length === 0" class="card add-card">
+      <span>+</span>
+      <small>Crear o unirse</small>
+    </div>
+
+    <div *ngFor="let team of teams" class="card team-card">
+      <h5>{{ team.name }}</h5>
+      <small>{{ team.sport_name }}</small>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <h4>Próximos partidos</h4>
+
+  <div class="horizontal-scroll">
+    <div *ngIf="games.length === 0" class="card empty-card">
+      <img src="assets/images/sports/padel/padel-player-man.jpeg" />
+      <p>No tienes partidos</p>
+    </div>
+
+    <div *ngFor="let game of games" class="card game-card">
+      <h5>{{ game.team1 }} vs {{ game.team2 }}</h5>
+      <small>{{ game.date }}</small>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <h4>Ligas disponibles</h4>
+
+  <div class="horizontal-scroll">
+    <div *ngFor="let league of competitions" class="card league-card">
+      <h5>{{ league.name }}</h5>
+      <small>{{ league.sport_name }}</small>
+      <button class="join-btn">Unirse</button>
+    </div>
+  </div>
+</section>
+
+<section class="section stats">
+  <h4>Estadísticas</h4>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <strong>12</strong>
+      <span>Partidos</span>
+    </div>
+    <div class="stat">
+      <strong>8</strong>
+      <span>Victorias</span>
+    </div>
+    <div class="stat">
+      <strong>2</strong>
+      <span>Ligas</span>
+    </div>
+  </div>
+</section>
+
+
+<footer class="dashboard-footer">
+  <button>Inicio</button>
+  <button>Equipos</button>
+  <button>Perfil</button>
+</footer>

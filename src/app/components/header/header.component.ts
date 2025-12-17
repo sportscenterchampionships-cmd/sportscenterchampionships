@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SupabaseService } from '../../core/supabase.service';
-import { AuthService } from '../../services/auth.service';
+import { SupabaseService } from '../../services/core/supabase.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

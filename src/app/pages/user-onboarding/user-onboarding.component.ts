@@ -1,17 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SupabaseService } from '../../core/supabase.service';
+import { SupabaseService } from '../../services/core/supabase.service';
+import { SportCard } from '../../models/app.interface';
+import { UserService } from '../../services/user/user.service';
+import { Router } from '@angular/router';
 
-interface SportCard {
-  key: string;
-  name: string;
-  image: string;
-  color: string;
-  selected: boolean;
-  level?: string;
-  disabled?: boolean;
-  }
+
 @Component({
   selector: 'app-user-onboarding',
   imports: [
@@ -41,6 +36,7 @@ export class UserOnboardingComponent {
   };
 
   loading = false;
+  avatarFile: File | null = null;
 
 
 sports: SportCard[] = [
@@ -83,22 +79,20 @@ sports: SportCard[] = [
 ];
 
 
+private supabase = inject(SupabaseService);
+private userService = inject(UserService);
+private router = inject(Router);
 
-constructor(private supabase: SupabaseService) {}
+constructor() {}
 
 
 async onAvatarSelected(event: any) {
-const file = event.target.files[0];
-if (!file) return;
-
-
-const filePath = `avatars/${Date.now()}-${file.name}`;
-
-
-const { error } = await this.supabase.uploadAvatar(filePath, file);
-if (!error) {
-this.profile.avatar_url = this.supabase.getPublicAvatarUrl(filePath);
-}
+  const file = event.target.files[0];
+  if (!file) return;
+  const urlImg = await this.supabase.uploadAvatar(file);
+  if (urlImg) {
+    this.profile.avatar_url = urlImg;
+  }
 }
 
 
@@ -116,18 +110,50 @@ toggleSport(sport: any) {
 
 
 
-  async saveProfile() {
+async saveProfile() {
+  try {
     this.loading = true;
-    const selectedSports = this.sports
-      .filter(s => s.selected)
-      .map(s => ({
-        sport: s.key,
-        level: s.level,
-      }));
 
-    console.log('Perfil:', this.profile);
-    console.log('Deportes:', selectedSports);
+    const { data, error: signUpError } = await this.supabase.signUp(
+      this.profile.email,
+      this.profile.password
+    );
 
+    if (signUpError) throw signUpError;
+
+
+    if (this.avatarFile) {
+      this.profile.avatar_url =
+      await this.supabase.uploadAvatar(this.avatarFile);
+    }
+
+    await this.userService.createUser({
+      name: this.profile.name,
+      email: this.profile.email,
+      avatar_url: this.profile.avatar_url,
+      language: this.profile.language,
+      birth_date: this.profile.birthdate,
+      gender: this.profile.gender,
+      position: this.profile.position,
+      notifications: this.profile.notifications,
+      city: this.profile.city,
+      zone: this.profile.zone,
+    });
+
+    // Loguear inmediatamente
+    const { data: loginData, error: loginError } = await this.supabase.signInWithEmail(
+      this.profile.email,
+      this.profile.password
+    );
+    if (loginError) throw loginError;
+    console.log('Login after sign up:', loginData);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    this.loading = false;
+    this.router.navigate(['/user_onboarding']);
   }
+}
+
 
 }

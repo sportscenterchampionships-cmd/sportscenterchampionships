@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SupabaseService } from './core/supabase.service';
+import { SupabaseService } from './services/core/supabase.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +13,6 @@ export class AppComponent implements OnInit {
   constructor(private supabase: SupabaseService) {}
 
   ngOnInit() {
-    
+
   }
 }
