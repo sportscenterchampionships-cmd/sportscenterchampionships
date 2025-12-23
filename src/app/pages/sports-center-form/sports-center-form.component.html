@@ -1,0 +1,114 @@
+<div class="center-page">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-9 col-lg-6">
+        <div class="card shadow-lg center-card">
+          <!-- Imagen superior -->
+          <div class="card-image">
+            <img
+              src="assets/images/sports-center.jpeg"
+              alt="Centro deportivo"
+            />
+          </div>
+
+          <div class="card-body p-4">
+            <h2 class="fw-bold text-center mb-2">
+              Añadir centro deportivo
+            </h2>
+
+            <p class="text-muted text-center mb-4">
+              Introduce los datos básicos o pega el enlace de Google Maps
+            </p>
+
+            <form (ngSubmit)="submit()" #form="ngForm">
+              <!-- Nombre -->
+              <div class="mb-3">
+                <label class="form-label">Nombre del centro *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  required
+                  [(ngModel)]="center.name"
+                  placeholder="Ej. Centro Deportivo Municipal"
+                />
+              </div>
+
+              <!-- Google Maps -->
+              <div class="mb-3">
+                <label class="form-label">
+                  Enlace de Google Maps
+                </label>
+                <input
+                  type="url"
+                  class="form-control"
+                  name="google_maps_url"
+                  [(ngModel)]="center.google_maps_url"
+                  placeholder="https://maps.google.com/..."
+                />
+                <small class="text-muted">
+                  Puedes copiarlo directamente desde Google Maps
+                </small>
+              </div>
+
+              <!-- Dirección -->
+              <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  [(ngModel)]="center.address"
+                  placeholder="Calle, número"
+                />
+              </div>
+
+              <!-- Ciudad -->
+              <div class="mb-3">
+                <label class="form-label">Ciudad</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="city"
+                  [(ngModel)]="center.city"
+                  placeholder="Ciudad"
+                />
+              </div>
+
+              <!-- Teléfono -->
+              <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  name="phone"
+                  [(ngModel)]="center.phone"
+                  placeholder="+34 600 000 000"
+                />
+              </div>
+
+              <!-- Web -->
+              <div class="mb-4">
+                <label class="form-label">Página web</label>
+                <input
+                  type="url"
+                  class="form-control"
+                  name="website"
+                  [(ngModel)]="center.website"
+                  placeholder="https://..."
+                />
+              </div>
+
+              <button
+                class="btn btn-primary w-100 py-2 fw-semibold"
+                [disabled]="!form.valid"
+              >
+                Guardar centro deportivo
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

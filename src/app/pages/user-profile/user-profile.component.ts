@@ -5,21 +5,23 @@ import { SupabaseService } from '../../services/core/supabase.service';
 import { SportCard } from '../../models/app.interface';
 import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
+import { SportsSelectorComponent } from '../components/sports-selector/sports-selector.component';
 
 
 @Component({
-  selector: 'app-user-onboarding',
+  selector: 'app-user-profile',
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    SportsSelectorComponent
   ],
   standalone: true,
-  templateUrl: './user-onboarding.component.html',
-  styleUrls: ['./user-onboarding.component.css']
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
 
 
-export class UserOnboardingComponent {
+export class UserProfileComponent {
   profile = {
     name: '',
     email: '',
@@ -78,6 +80,7 @@ sports: SportCard[] = [
   },
 ];
 
+selectedSports: SportCard[] = [];
 
 private supabase = inject(SupabaseService);
 private userService = inject(UserService);
@@ -95,20 +98,9 @@ async onAvatarSelected(event: any) {
   }
 }
 
-
-toggleSport(sport: any) {
-  if (sport.disabled) {
-    return;
-  }
-
-  sport.selected = !sport.selected;
-
-  if (!sport.selected) {
-    sport.level = '';
-  }
+onSportsSelected(sports: SportCard[]) {
+  this.selectedSports = sports;
 }
-
-
 
 async saveProfile() {
   try {
@@ -153,6 +145,10 @@ async saveProfile() {
     this.loading = false;
     this.router.navigate(['/user_onboarding']);
   }
+}
+
+goToNextTest() {
+  this.router.navigate(['/dashboard']);
 }
 
 

@@ -37,6 +37,13 @@
   padding: 1rem;
 }
 
+.section h4 {
+  margin: 0 0 .6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
 .horizontal-scroll {
   display: flex;
   gap: 1rem;
@@ -44,9 +51,34 @@
   padding-bottom: 0.5rem;
 }
 
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.25rem 0.75rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar la barra como en next-games */
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* Eliminado el thumb para que no se muestre */
+/* .carousel::-webkit-scrollbar-thumb { */
+/*   background: rgba(15,23,42,.15); */
+/*   border-radius: 8px; */
+/* } */
+
+.snap {
+  scroll-snap-align: start;
+}
+
 .card {
   min-width: 160px;
-  background: white;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 1rem;
   box-shadow: 0 6px 20px rgba(0,0,0,.08);
@@ -79,6 +111,11 @@
   text-align: center;
 }
 
+.subtitle {
+  font-size: .8rem;
+  color: #64748b;
+}
+
 .dashboard-footer {
   position: sticky;
   bottom: 0;
@@ -87,4 +124,32 @@
   padding: 0.8rem;
   background: white;
   border-top: 1px solid #eee;
+}
+
+
+.add-card {
+  min-width: 60px;
+  height: 45px;
+  border-radius: 16px;
+  border: 2px dashed #93c5fd;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  box-shadow: 0 6px 20px rgba(37,99,235,.12);
+  /* width: var(--competition-card-width, 220px); */
+  /* box-sizing: border-box; */
+}
+
+.plus {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.label {
+  font-size: .8rem;
+  font-weight: 600;
 }

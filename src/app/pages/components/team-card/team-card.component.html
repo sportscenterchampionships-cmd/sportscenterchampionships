@@ -1,0 +1,9 @@
+<ng-container *ngIf="team">
+  <div class="team-card" [routerLink]="['/team']" [attr.aria-label]="'Editar equipo ' + team.name">
+    <div class="image-wrap">
+      <img [src]="team.image || 'assets/images/team-default.png'" alt="{{ team.name }}" />
+    </div>
+    <div class="name">{{ team.name }}</div>
+  </div>
+</ng-container>
+

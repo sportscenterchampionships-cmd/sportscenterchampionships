@@ -14,73 +14,37 @@
 </header>
 
 <section class="section">
-  <h4>Mis equipos</h4>
+  <div class="section-header d-flex align-items-center ">
+    <h2 class="fw-bold  mx-2">Mis equipos</h2>
+    <button class="add-card" type="button" [routerLink]="['/team']" aria-label="Crear o editar equipo">
+      <span class="plus">+</span>
+    </button>
+  </div>
 
-  <div class="horizontal-scroll">
-    <div *ngIf="teams.length === 0" class="card add-card">
-      <span>+</span>
-      <small>Crear o unirse</small>
-    </div>
-
-    <div *ngFor="let team of teams" class="card team-card">
-      <h5>{{ team.name }}</h5>
-      <small>{{ team.sport_name }}</small>
-    </div>
+  <div class="carousel mt-2">
+    <ng-container *ngFor="let team of teams">
+      <app-team-card class="snap" [team]="team"></app-team-card>
+    </ng-container>
   </div>
 </section>
-
 
 <section class="section">
-  <h4>Próximos partidos</h4>
-
-  <div class="horizontal-scroll">
-    <div *ngIf="games.length === 0" class="card empty-card">
-      <img src="assets/images/sports/padel/padel-player-man.jpeg" />
-      <p>No tienes partidos</p>
-    </div>
-
-    <div *ngFor="let game of games" class="card game-card">
-      <h5>{{ game.team1 }} vs {{ game.team2 }}</h5>
-      <small>{{ game.date }}</small>
-    </div>
-  </div>
+  <app-next-games [games]="games"></app-next-games>
 </section>
-
 
 <section class="section">
-  <h4>Ligas disponibles</h4>
 
-  <div class="horizontal-scroll">
-    <div *ngFor="let league of competitions" class="card league-card">
-      <h5>{{ league.name }}</h5>
-      <small>{{ league.sport_name }}</small>
-      <button class="join-btn">Unirse</button>
-    </div>
+  <div class="section-header d-flex align-items-center ">
+    <h2 class="fw-bold  mx-2">Mis campeonatos</h2>
+    <button class="add-card" type="button" [routerLink]="['/competition']" aria-label="Crear o editar equipo">
+      <span class="plus">+</span>
+    </button>
+  </div>
+  <div class="carousel mt-2">
+    <ng-container *ngFor="let comp of competitions">
+      <app-competition-card class="snap" [competition]="comp"></app-competition-card>
+    </ng-container>
   </div>
 </section>
 
-<section class="section stats">
-  <h4>Estadísticas</h4>
-
-  <div class="stats-grid">
-    <div class="stat">
-      <strong>12</strong>
-      <span>Partidos</span>
-    </div>
-    <div class="stat">
-      <strong>8</strong>
-      <span>Victorias</span>
-    </div>
-    <div class="stat">
-      <strong>2</strong>
-      <span>Ligas</span>
-    </div>
-  </div>
-</section>
-
-
-<footer class="dashboard-footer">
-  <button>Inicio</button>
-  <button>Equipos</button>
-  <button>Perfil</button>
-</footer>
+<app-footer></app-footer>

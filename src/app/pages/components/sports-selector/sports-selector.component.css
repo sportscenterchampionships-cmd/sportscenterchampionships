@@ -1,0 +1,32 @@
+/* Card container */
+.sport-card {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.sport-card.selected {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px #2563eb33, 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sport-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.sport-image {
+  height: 80px;
+  background-size: cover;
+  background-position: center;
+}
+
+.sport-body {
+  padding: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+}

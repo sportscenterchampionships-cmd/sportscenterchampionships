@@ -1,0 +1,32 @@
+<div class="row g-3 mb-4">
+  <div
+    class="col-6 col-md-3"
+    *ngFor="let sport of sports"
+  >
+    <div
+      class="sport-card"
+      [class.selected]="sport.selected"
+      [class.disabled]="sport.disabled"
+      (click)="toggleSport(sport)"
+    >
+      <div
+        class="sport-image"
+        [style.backgroundImage]="'url(' + sport.image + ')'"
+      ></div>
+
+      <div class="sport-body" [ngClass]="sport.color">
+        <span>{{ sport.name }}</span>
+      </div>
+    </div>
+
+    <!-- NIVEL -->
+    <input
+      *ngIf="sport.selected && showLevel"
+      type="text"
+      class="form-control mt-2"
+      placeholder="Nivel"
+      [(ngModel)]="sport.level"
+      name="level-{{ sport.key }}"
+    />
+  </div>
+</div>

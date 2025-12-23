@@ -1,0 +1,138 @@
+.team-page {
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.team-card {
+  border-radius: 28px;
+  overflow: hidden;
+  border: none;
+}
+
+/* HEADER */
+.team-header {
+  background: linear-gradient(135deg, #1e88e5, #42a5f5);
+  color: white;
+  padding: 24px;
+}
+
+.team-header h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.team-header p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+/* SECCIONES */
+.form-section {
+  margin-bottom: 28px;
+}
+
+.form-section h5 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* AVATAR */
+.team-avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.team-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #1e88e5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* NIVEL */
+.level-selector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.level-pill {
+  border: 1px solid #ced4da;
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.level-pill.active {
+  background: #1e88e5;
+  color: white;
+  border-color: #1e88e5;
+}
+
+/* JUGADORES */
+.players-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.player-chip {
+  background: #e9ecef;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.player-chip span {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* BÚSQUEDA */
+.search-results {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.search-item {
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .team-card {
+    border-radius: 20px;
+  }
+}

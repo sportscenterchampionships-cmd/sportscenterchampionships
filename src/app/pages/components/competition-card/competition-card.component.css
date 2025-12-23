@@ -1,0 +1,61 @@
+/* Card container */
+.competition-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+  cursor: pointer;
+  width: var(--competition-card-width, 220px);
+  box-sizing: border-box;
+}
+
+.competition-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Image wrapper keeps aspect ratio */
+.image-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f3f4f6;
+}
+
+.image-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Name/title */
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.25rem;
+  padding: 0 0.25rem;
+  white-space: normal;   /* allow wrapping */
+  overflow: visible;     /* show full text */
+  text-overflow: clip;   /* disable ellipsis */
+  overflow-wrap: anywhere;
+}
+
+/* Responsive tweaks */
+@media (min-width: 768px) {
+  .competition-card {
+    padding: 1rem;
+    width: var(--competition-card-width, 220px);
+  }
+  .name {
+    font-size: 1.05rem;
+  }
+}

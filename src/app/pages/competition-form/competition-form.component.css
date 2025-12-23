@@ -1,0 +1,80 @@
+.competition-page {
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.competition-card {
+  border-radius: 28px;
+  overflow: hidden;
+  border: none;
+}
+
+.competition-header {
+  background: linear-gradient(135deg, #1e88e5, #42a5f5);
+  color: #fff;
+  padding: 24px;
+}
+
+.competition-header h2 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.competition-header p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+.form-section {
+  margin-bottom: 28px;
+}
+
+.form-section h5 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Banner */
+.banner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-banner-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #1e88e5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Puntuación */
+.points-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .competition-card { border-radius: 20px; }
+  .banner-wrapper { height: 160px; }
+  .points-grid { grid-template-columns: 1fr; }
+}

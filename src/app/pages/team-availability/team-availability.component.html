@@ -1,0 +1,38 @@
+<div class="availability-card">
+  <h5>Disponibilidad horaria</h5>
+
+  <div class="day-card" *ngFor="let day of days">
+    <!-- Cabecera día -->
+    <div class="day-header">
+      <span class="day-name">{{ day.label }}</span>
+
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="day.enabled" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Horarios -->
+    <div class="day-times" *ngIf="day.enabled">
+      <!-- Mañana -->
+      <div class="time-block">
+        <span class="block-label">Mañana</span>
+        <div class="time-row">
+          <input type="time" [(ngModel)]="day.morning.start" />
+          <span>–</span>
+          <input type="time" [(ngModel)]="day.morning.end" />
+        </div>
+      </div>
+
+      <!-- Tarde -->
+      <div class="time-block">
+        <span class="block-label">Tarde</span>
+        <div class="time-row">
+          <input type="time" [(ngModel)]="day.afternoon.start" />
+          <span>–</span>
+          <input type="time" [(ngModel)]="day.afternoon.end" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

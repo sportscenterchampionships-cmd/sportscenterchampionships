@@ -1,0 +1,48 @@
+/* Reset & container */
+* { box-sizing: border-box; }
+
+/* Clasificación simple */
+.classification { padding: 8px; }
+
+.standings { width: 100%; max-width: 960px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; background: #fff; padding: 0.5rem; }
+
+/* Fila base */
+.row { display: grid; gap: 4px; align-items: center; padding: 4px 6px; font-size: 0.8rem; }
+.row.header { background: #f8fafc; color: #475569; font-weight: 600; font-size: 0.7rem; }
+.row + .row { border-top: 1px solid #f1f5f9; }
+
+/* Columnas proporcionales a 100% del ancho disponible */
+.row.cols-6 { grid-template-columns: 29.13% 13.59% 13.59% 13.59% 13.59% 16.51%; }
+.row.cols-5 { grid-template-columns: 33.71% 15.73% 15.73% 15.73% 19.10%; }
+
+.cell { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.cell.team { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+.cell.pj, .cell.num, .cell.pts { text-align: center; font-variant-numeric: tabular-nums; }
+
+/* Avatar + pos overlay */
+.avatar-wrapper { position: relative; width: 65px; height: 65px; display: inline-block; }
+.avatar-wrapper .avatar { display: block; width: 65px; height: 65px; }
+.avatar-wrapper .pos {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: #000;
+  /* white border around the number */
+  -webkit-text-stroke: 1px #fff;
+  text-shadow:
+    0 1px 0 #fff,
+    1px 0 0 #fff,
+    0 -1px 0 #fff,
+    -1px 0 0 #fff;
+}
+
+.pos { min-width: 30px; text-align: center; font-weight: 600; color: #334155; }
+.avatar { width: 65px; height: 65px; border-radius: 4px; object-fit: cover; border: 1px solid #e5e7eb; }
+.name { overflow: hidden; text-overflow: ellipsis; }
+
+.row.leader .cell.pts { color: #4f46e5; font-weight: 700; }

@@ -1,0 +1,165 @@
+<div class="onboarding-hero">
+  <div class="overlay"></div>
+
+  <div class="onboarding-card">
+    <h2>Bienvenido 👋</h2>
+    <p class="subtitle">Crea tu perfil y empieza a competir</p>
+
+    <form (ngSubmit)="saveProfile()" #form="ngForm">
+
+      <!-- AVATAR -->
+      <div class="avatar-upload">
+        <img
+          class="avatar-preview"
+          [src]="profile.avatar_url || 'assets/images/default-avatar.jpg'"
+          alt="Avatar"
+        />
+
+        <label class="upload-btn">
+          Cambiar foto
+          <input
+            type="file"
+            hidden
+            accept="image/*"
+            (change)="onAvatarSelected($event)"
+          />
+        </label>
+      </div>
+
+      <!-- NOMBRE -->
+      <input
+        class="form-control mb-3"
+        placeholder="Nombre"
+        [(ngModel)]="profile.name"
+        name="name"
+        required
+      />
+
+      <!-- EMAIL -->
+      <input
+        class="form-control mb-3"
+        [value]="profile.email"
+        placeholder="Email"
+        [(ngModel)]="profile.email"
+        name="email"
+        required
+      />
+
+      <!-- PASSWORD -->
+      <input
+        type="password"
+        class="form-control mb-3"
+        placeholder="Contraseña"
+        [(ngModel)]="profile.password"
+        name="password"
+        required
+      />
+
+      <!-- IDIOMA -->
+      <select
+        class="form-select mb-4"
+        [(ngModel)]="profile.language"
+        name="language"
+      >
+        <option value="es">🇪🇸 Español</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="ca"> Valencià</option>
+      </select>
+
+      <!-- FECHA DE NACIMIENTO -->
+      <input
+        type="date"
+        class="form-control mb-3"
+        [(ngModel)]="profile.birthdate"
+        name="birthdate"
+        required
+      />
+
+      <!-- SEXO -->
+      <select
+        class="form-select mb-3"
+        [(ngModel)]="profile.gender"
+        name="gender"
+        required
+      >
+        <option value="" disabled selected>Sexo</option>
+        <option value="male">Hombre</option>
+        <option value="female">Mujer</option>
+        <option value="other">Otro</option>
+      </select>
+
+      <!-- POSICIÓN -->
+      <select
+        class="form-select mb-3"
+        [(ngModel)]="profile.position"
+        name="position"
+      >
+        <option value="" disabled selected>Posición</option>
+        <option value="drive">Drive</option>
+        <option value="reves">Revés</option>
+        <option value="indiferente">Indiferente</option>
+      </select>
+
+      <!-- POBLACIÓN -->
+      <input
+        type="text"
+        class="form-control mb-3"
+        placeholder="Población"
+        [(ngModel)]="profile.city"
+        name="city"
+        required
+      />
+
+      <!-- ZONA DE PREFERENCIA -->
+      <select
+        class="form-select mb-4"
+        [(ngModel)]="profile.zone"
+        name="zone"
+        required
+      >
+        <option value="" disabled selected>Zona de preferencia</option>
+        <option value="north">Zona Norte</option>
+        <option value="center">Zona Centro</option>
+        <option value="south">Zona Sur</option>
+      </select>
+
+      <!-- NOTIFICACIONES -->
+      <div class="form-check form-switch mb-4">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="notifications"
+          [(ngModel)]="profile.notifications"
+          name="notifications"
+        />
+        <label class="form-check-label" for="notifications">
+          Recibir notificaciones
+        </label>
+      </div>
+
+      <!-- DEPORTES -->
+      <h4 class="section-title">Deportes que practicas</h4>
+      <app-sports-selector [showLevel]="true" (sportsSelected)="onSportsSelected($event)"></app-sports-selector>
+
+      <!-- SUBMIT -->
+      <button
+        type="submit"
+        class="mobile-submit"
+        [disabled]="loading || !form.valid"
+      >
+        <span *ngIf="!loading">Crear cuenta</span>
+        <span *ngIf="loading" class="spinner"></span>
+      </button>
+
+      <button
+        type="submit"
+        class="mobile-submit"
+        (click)="goToNextTest()"
+      >
+        <span *ngIf="!loading">Siguiente TEST</span>
+      </button>
+
+
+    </form>
+  </div>
+</div>

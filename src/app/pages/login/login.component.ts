@@ -53,6 +53,6 @@ export class LoginComponent {
   }
 
   goToOnboarding() {
-    this.router.navigate(['/user_onboarding']);
+    this.router.navigate(['/user-profile']);
   }
 }

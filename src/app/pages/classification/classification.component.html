@@ -1,0 +1,33 @@
+<section class="classification">
+  <header>
+    <h1>Clasificación</h1>
+    <p class="subtitle">Competición: {{ competitionId }}</p>
+  </header>
+
+  <div class="standings" aria-label="Tabla de clasificación">
+    <div class="row header" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
+      <div class="cell team">Equipo</div>
+      <div class="cell pj">PJ</div>
+      <div class="cell num">W</div>
+      <div class="cell num">D</div>
+      <div class="cell num" *ngIf="hasLoses">L</div>
+      <div class="cell pts">PTOS</div>
+    </div>
+
+    <div class="row" *ngFor="let r of rows; let i = index" [class.leader]="i === 0" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
+      <div class="cell team">
+        <!-- Wrap avatar and position to overlay the number over the image -->
+        <div class="avatar-wrapper">
+          <img class="avatar" [src]="'/assets/images/team-default.png'" [alt]="'Escudo ' + r.team" />
+          <span class="pos" [attr.aria-label]="'Posición ' + r.position">{{ r.position }}</span>
+        </div>
+        <span class="name" [title]="r.team">{{ r.team }}</span>
+      </div>
+      <div class="cell pj">{{ r.played }}</div>
+      <div class="cell num">{{ r.won }}</div>
+      <div class="cell num">{{ r.draw }}</div>
+      <div class="cell num" *ngIf="hasLoses">{{ r.lost }}</div>
+      <div class="cell pts">{{ r.points }}</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,209 @@
+<div class="competition-page">
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <div class="card competition-card shadow-lg">
+          <div class="competition-header">
+            <h2>Competición</h2>
+            <p>Alta y edición de competición</p>
+          </div>
+
+          <div class="card-body p-4">
+            <!-- Banner -->
+            <section class="form-section text-center">
+              <div class="banner-wrapper">
+                <img src="assets/images/sports-center.jpeg" alt="Banner" class="banner-img" />
+                <button class="edit-banner-btn" title="Cambiar banner">✎</button>
+              </div>
+              <small class="text-muted d-block mt-2">Cambiar imagen/banner</small>
+            </section>
+
+            <!-- Datos básicos -->
+            <section class="form-section">
+              <h5>Datos básicos</h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <input class="form-control" placeholder="Nombre de la competición" [(ngModel)]="competition.name" name="name" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.sport_id" name="sport_id">
+                    <option [ngValue]="null">Deporte</option>
+                    <option [ngValue]="1">Pádel</option>
+                    <option [ngValue]="2">Tenis</option>
+                    <option [ngValue]="3">Fútbol</option>
+                    <option [ngValue]="4">Basket</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.type" name="type">
+                    <option [ngValue]="null">Tipo</option>
+                    <option [ngValue]="1">Liga</option>
+                    <option [ngValue]="2">Torneo</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.level" name="level">
+                    <option [ngValue]="null">Nivel</option>
+                    <option [ngValue]="1">Principiante</option>
+                    <option [ngValue]="2">Intermedio</option>
+                    <option [ngValue]="3">Avanzado</option>
+                    <option [ngValue]="4">Competición</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.status" name="status">
+                    <option value="en_espera">En espera</option>
+                    <option value="iniciada">Iniciada</option>
+                    <option value="finalizada">Finalizada</option>
+                  </select>
+                </div>
+                <div class="col-12 d-flex gap-3 flex-wrap mt-1">
+                  <label class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="competition.is_open" name="is_open" />
+                    <span class="ms-2">Inscripción abierta (pública)</span>
+                  </label>
+                  <label class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="competition.back_to_back" name="back_to_back" />
+                    <span class="ms-2">Ida y vuelta</span>
+                  </label>
+                </div>
+              </div>
+            </section>
+
+            <!-- Equipos -->
+            <section class="form-section">
+              <h5>Equipos</h5>
+              <div class="row g-3">
+                <div class="col-6"><input type="number" min="2" class="form-control" placeholder="Mín. equipos" [(ngModel)]="competition.min_teams" name="min_teams" /></div>
+                <div class="col-6"><input type="number" min="2" class="form-control" placeholder="Máx. equipos" [(ngModel)]="competition.max_teams" name="max_teams" /></div>
+                <div class="col-6"><input type="number" min="1" class="form-control" placeholder="Mín. jugadores por equipo" [(ngModel)]="competition.min_players_per_team" name="min_players_per_team" /></div>
+                <div class="col-6"><input type="number" min="1" class="form-control" placeholder="Máx. jugadores por equipo" [(ngModel)]="competition.max_players_per_team" name="max_players_per_team" /></div>
+              </div>
+            </section>
+
+            <!-- Fechas -->
+            <section class="form-section">
+              <h5>Fechas</h5>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Inicio</label>
+                  <input type="date" class="form-control" [(ngModel)]="competition.start_date" name="start_date" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Fin</label>
+                  <input type="date" class="form-control" [(ngModel)]="competition.end_date" name="end_date" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Apertura inscripciones</label>
+                  <input type="date" class="form-control" [(ngModel)]="competition.registration_open_at" name="registration_open_at" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label">Cierre inscripciones</label>
+                  <input type="date" class="form-control" [(ngModel)]="competition.registration_close_at" name="registration_close_at" />
+                </div>
+              </div>
+            </section>
+
+            <!-- Localización -->
+            <section class="form-section">
+              <h5>Localización</h5>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.location" name="location">
+                    <option [ngValue]="null">Zona / Centro</option>
+                    <option [ngValue]="1">Centro Deportivo Norte</option>
+                    <option [ngValue]="2">Club Pádel Indoor</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <input class="form-control" placeholder="Dirección / Pista" [(ngModel)]="competition.banner_url" name="banner_url" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <select class="form-select" [(ngModel)]="competition.timezone" name="timezone">
+                    <option [ngValue]="null">Zona horaria</option>
+                    <option value="Europe/Madrid">Europe/Madrid</option>
+                    <option value="Atlantic/Canary">Atlantic/Canary</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <!-- Organización -->
+            <section class="form-section">
+              <h5>Organización</h5>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <input class="form-control" placeholder="Organizador" [(ngModel)]="competition.organizer_name" name="organizer_name" />
+                </div>
+                <div class="col-12 col-md-3">
+                  <input type="email" class="form-control" placeholder="Email" [(ngModel)]="competition.organizer_email" name="organizer_email" />
+                </div>
+                <div class="col-12 col-md-3">
+                  <input class="form-control" placeholder="Teléfono" [(ngModel)]="competition.organizer_phone" name="organizer_phone" />
+                </div>
+              </div>
+            </section>
+
+            <!-- Reglas y puntuación -->
+            <section class="form-section">
+              <h5>Reglas y puntuación</h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <textarea class="form-control" rows="3" placeholder="Descripción / reglas" [(ngModel)]="competition.description" name="description"></textarea>
+                </div>
+                <div class="col-12 col-md-6">
+                  <input class="form-control" placeholder="Enlace a bases/reglamento (opcional)" [(ngModel)]="competition.rules_url" name="rules_url" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <input class="form-control" placeholder="Premios (opcional)" [(ngModel)]="competition.prizes" name="prizes" />
+                </div>
+                <div class="col-12 d-flex gap-3 flex-wrap">
+                  <label class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="competition.allow_draws" name="allow_draws" />
+                    <span class="ms-2">Permitir empates</span>
+                  </label>
+                </div>
+                <div class="col-12">
+                  <div class="points-grid">
+                    <div>
+                      <label class="form-label">Puntos por victoria</label>
+                      <input type="number" class="form-control" [(ngModel)]="competition.points_win" name="points_win" />
+                    </div>
+                    <div>
+                      <label class="form-label">Puntos por empate</label>
+                      <input type="number" class="form-control" [(ngModel)]="competition.points_draw" name="points_draw" />
+                    </div>
+                    <div>
+                      <label class="form-label">Puntos por derrota</label>
+                      <input type="number" class="form-control" [(ngModel)]="competition.points_loss" name="points_loss" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Inscripción -->
+            <section class="form-section">
+              <h5>Inscripción</h5>
+              <div class="row g-3">
+                <div class="col-8">
+                  <input type="number" min="0" step="0.01" class="form-control" placeholder="Cuota de inscripción" [(ngModel)]="competition.fee_amount" name="fee_amount" />
+                </div>
+                <div class="col-4">
+                  <select class="form-select" [(ngModel)]="competition.fee_currency" name="fee_currency">
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+
+            <div class="mt-2" *ngIf="error" style="color:#c62828;">{{ error }}</div>
+            <div class="mt-2" *ngIf="success" style="color:#2e7d32;">Guardado correctamente</div>
+            <button class="btn btn-primary w-100 py-2 mt-2" (click)="save()" [disabled]="saving">{{ saving ? 'Guardando...' : 'Guardar competición' }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

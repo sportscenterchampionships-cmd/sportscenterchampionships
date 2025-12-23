@@ -1,0 +1,126 @@
+<div class="team-page">
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-7">
+
+        <div class="card team-card shadow-lg">
+
+          <!-- HEADER -->
+          <div class="team-header">
+            <h2>Equipo</h2>
+            <p>Alta y edición de equipo</p>
+          </div>
+
+          <div class="card-body p-4">
+
+            <!-- IMAGEN DEL EQUIPO -->
+            <section class="form-section text-center">
+              <div class="team-avatar-wrapper">
+                <img
+                  src="assets/images/team-default.png"
+                  alt="Equipo"
+                  class="team-avatar"
+                />
+                <button class="edit-avatar-btn">
+                  ✎
+                </button>
+              </div>
+              <small class="text-muted d-block mt-2">
+                Cambiar imagen del equipo
+              </small>
+            </section>
+
+            <!-- DATOS BÁSICOS -->
+            <section class="form-section">
+              <h5>Datos del equipo</h5>
+
+              <input
+                class="form-control mb-3"
+                placeholder="Nombre del equipo"
+              />
+
+              <select class="form-select">
+                <option value="">Género</option>
+                <option>Mixto</option>
+                <option>Masculino</option>
+                <option>Femenino</option>
+              </select>
+            </section>
+
+            <!-- NIVEL -->
+            <section class="form-section">
+              <h5>Nivel del equipo</h5>
+
+              <div class="level-selector">
+                <button class="level-pill active">Principiante</button>
+                <button class="level-pill">Intermedio</button>
+                <button class="level-pill">Avanzado</button>
+                <button class="level-pill">Competición</button>
+              </div>
+            </section>
+
+            <!-- DEPORTE / CENTRO -->
+            <section class="form-section">
+              <h5>Deporte y centro</h5>
+
+              <select class="form-select mb-3">
+                <option value="">Deporte</option>
+                <option>Pádel</option>
+                <option>Tenis</option>
+                <option>Fútbol</option>
+              </select>
+
+              <select class="form-select">
+                <option value="">Centro deportivo</option>
+                <option>Centro Deportivo Norte</option>
+                <option>Club Pádel Indoor</option>
+              </select>
+            </section>
+
+            <!-- JUGADORES -->
+            <section class="form-section">
+              <h5>Jugadores</h5>
+
+              <input
+                class="form-control"
+                placeholder="Buscar jugador por nombre..."
+              />
+
+              <!-- Resultados búsqueda -->
+              <div class="search-results mt-2">
+                <div class="search-item">Juan Pérez</div>
+                <div class="search-item">María López</div>
+              </div>
+
+              <!-- Jugadores seleccionados -->
+              <div class="players-list mt-3">
+                <div class="player-chip">
+                  Juan Pérez <span>✕</span>
+                </div>
+                <div class="player-chip">
+                  María López <span>✕</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- DISPONIBILIDAD -->
+            <section class="form-section">
+              <app-team-availability></app-team-availability>
+            </section>
+
+            <!-- ACCIÓN -->
+            <button class="btn btn-primary w-100 py-2 mt-4">
+              Guardar
+            </button>
+            <!-- ACCIÓN -->
+            <button class="btn btn-primary w-100 py-2 mt-4">
+              Cancelar
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
