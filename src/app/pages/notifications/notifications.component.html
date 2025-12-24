@@ -1,0 +1,18 @@
+<section class="notifications-container container py-3">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="m-0">Notificaciones</h2>
+    <app-back-button ariaLabel="Volver" label="Volver"></app-back-button>
+  </div>
+
+  <div *ngIf="notifications.length; else empty">
+    <app-notification
+      *ngFor="let n of notifications; trackBy: trackById"
+      [notification]="n"
+      (delete)="onDelete($event)"
+    ></app-notification>
+  </div>
+
+  <ng-template #empty>
+    <div class="alert alert-info" role="status">No tienes notificaciones</div>
+  </ng-template>
+</section>

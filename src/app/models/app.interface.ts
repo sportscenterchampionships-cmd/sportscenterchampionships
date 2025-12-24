@@ -64,23 +64,6 @@ export interface GameCard {
   competition_id?: number | null;
 }
 
-// export interface Competition {
-//   id: number;
-//   sport_id: number;
-//   name: string;
-//   type?: CompetitionType | null;
-//   level?: number | null;
-//   min_teams?: number | null;
-//   max_teams?: number | null;
-//   start_date?: string | null;
-//   end_date?: string | null;
-//   location?: string | null;
-//   is_open: boolean;
-//   status: string;
-//   created_at: string;
-//   updated_at?: string | null;
-// }
-
 export interface CompetitionCard {
   id: number;
   name: string;
@@ -92,6 +75,7 @@ export interface CompetitionCard {
   start_date?: string | null;
   location?: string | null;
   is_open: boolean;
+  is_private?: boolean; // requiere código para unirse
 }
 
 export interface UserDashboardData {
@@ -101,6 +85,7 @@ export interface UserDashboardData {
 }
 
 export interface SportCenter {
+  id?: number;
   name: string;
   google_maps_url: string;
   address: string;
@@ -108,6 +93,18 @@ export interface SportCenter {
   phone: string;
   website: string;
 }
+
+export interface SportCenterZone {
+  id: number;
+  sport_center_id: number;
+  name: string;
+  type?: string; // pista cubierta, exterior, etc.
+}
+
+export type SportsCenterFilter = {
+  q?: string;
+  city?: string;
+};
 
 // Define interfaces for day availability and time ranges
 export interface TimeRange {
@@ -157,4 +154,6 @@ export interface Competition {
   prizes: string | null;
   banner_url: string | null;
   is_public: boolean; // visibilidad
+  is_private?: boolean; // privada: requiere código de acceso
+  access_code?: string | null; // código de 6 cifras
 }

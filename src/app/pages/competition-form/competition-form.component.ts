@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Competition } from '../../models/app.interface';
+import { Competition, SportCenter, SportCenterZone } from '../../models/app.interface';
 import { SupabaseService } from '../../services/core/supabase.service';
 import { Router } from '@angular/router';
 import { BackButtonComponent } from '../../components/back-button/back-button.component';
+import { SportCenterComponent } from '../../components/sport-center/sport-center.component';
 
 @Component({
   selector: 'app-competition-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, BackButtonComponent],
+  imports: [CommonModule, FormsModule, BackButtonComponent, SportCenterComponent],
   templateUrl: './competition-form.component.html',
   styleUrls: ['./competition-form.component.css'],
 })
@@ -51,11 +52,16 @@ export class CompetitionFormComponent {
     prizes: '',
     banner_url: '',
     is_public: true,
+    is_private: false,
+    access_code: null,
   };
 
   saving = false;
   error: string | null = null;
   success: boolean = false;
+
+  selectedCenter?: SportCenter;
+  selectedZone?: SportCenterZone | null;
 
   ngOnInit() {
     // If navigated with router state containing a competition, prefill the form
@@ -73,8 +79,16 @@ export class CompetitionFormComponent {
         start_date: comp.start_date ?? null,
         location: comp.location ?? null,
         is_open: comp.is_open ?? true,
+        is_private: comp.is_private ?? false,
       };
     }
+  }
+
+  onCenterZoneSelected(sel: { center: SportCenter; zone: SportCenterZone | null }) {
+    this.selectedCenter = sel.center;
+    this.selectedZone = sel.zone;
+    // Guardamos en "location" el id de la zona si existe; en su defecto, el id del centro
+    this.competition.location = (sel.zone?.id ?? sel.center.id) ?? null;
   }
 
   // Save competition (create or update)
@@ -84,10 +98,24 @@ export class CompetitionFormComponent {
     this.saving = true;
     try {
       const supabase = this.supabase.client;
-      const payload = { ...this.competition };
+      const payload = { ...this.competition } as any;
+
+      // If not private, clear any code
+      if (!payload.is_private) {
+        payload.access_code = null;
+      }
+
+      // Validate private code: exactly 6 digits
+      if (payload.is_private) {
+        const code = String(payload.access_code ?? '').trim();
+        if (!/^\d{6}$/.test(code)) {
+          throw new Error('Introduce un código de acceso de 6 cifras');
+        }
+        payload.access_code = code;
+      }
+
       // Convert empty strings to null for optional fields
       Object.keys(payload).forEach((k) => {
-        // @ts-ignore
         if (payload[k] === '') payload[k] = null;
       });
 

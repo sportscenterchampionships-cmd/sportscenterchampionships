@@ -1,0 +1,12 @@
+<div class="notification-item d-flex align-items-start justify-content-between p-3 border rounded mb-2">
+  <div class="me-3 flex-grow-1">
+    <div class="d-flex align-items-center gap-2">
+      <strong>{{ notification.title }}</strong>
+      <small class="text-muted">{{ notification.createdAt | date: 'short' }}</small>
+    </div>
+    <div class="text-body-secondary">{{ notification.description }}</div>
+  </div>
+  <button class="btn btn-light btn-sm" (click)="delete.emit(notification.id)" title="Borrar">
+    🗑️
+  </button>
+</div>

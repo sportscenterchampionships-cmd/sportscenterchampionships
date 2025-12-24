@@ -9,6 +9,7 @@ import { CompetitionFormComponent } from './pages/competition-form/competition-f
 import { ClassificationComponent } from './pages/classification/classification.component';
 import { TeamJoinComponent } from './pages/team-join/team-join.component';
 import { CompetitionJoinComponent } from './pages/competition-join/competition-join.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'competition', component: CompetitionFormComponent, data: { backTo: '/dashboard' } },
   { path: 'competition/join', component: CompetitionJoinComponent, data: { backTo: '/dashboard' } },
   { path: 'classification/:id', component: ClassificationComponent },
+  { path: 'notifications', component: NotificationsComponent, data: { backTo: '/dashboard' } },
   { path: '**', redirectTo: '' },
 ];

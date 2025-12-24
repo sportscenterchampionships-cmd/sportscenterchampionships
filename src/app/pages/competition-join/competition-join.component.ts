@@ -23,6 +23,13 @@ export class CompetitionJoinComponent {
 
   results: CompetitionCard[] = [];
 
+  // store access codes keyed by competition id
+  accessCodes: Record<number, string> = {};
+
+  private isValidCode(code?: string) {
+    return /^\d{6}$/.test(String(code ?? '').trim());
+  }
+
   search() {
     // TODO: Replace with service integration
     this.results = [
@@ -37,6 +44,7 @@ export class CompetitionJoinComponent {
         start_date: '2025-02-10',
         location: 'Polideportivo Sur',
         is_open: true,
+        is_private: false,
       },
       {
         id: 202,
@@ -48,13 +56,28 @@ export class CompetitionJoinComponent {
         level: 3,
         start_date: '2025-01-20',
         location: 'Real Club de Tenis',
-        is_open: false,
+        is_open: true,
+        is_private: true,
       },
     ];
   }
 
   requestJoin(competition: CompetitionCard) {
-    // TODO: send join/enrollment request via service (e.g., Supabase)
+    if (!competition.is_open) return;
+
+    if (competition.is_private) {
+      const code = this.accessCodes[competition.id];
+      if (!this.isValidCode(code)) {
+        alert('Introduce un código de acceso de 6 cifras');
+        return;
+      }
+      // TODO: send join request including access code
+      console.log('Solicitar inscripción privada', competition, 'code:', code);
+      alert(`Solicitud de inscripción enviada a "${competition.name}" con código ${code}`);
+      return;
+    }
+
+    // pública
     console.log('Solicitar inscripción a la competición', competition);
     alert(`Solicitud de inscripción enviada a "${competition.name}"`);
   }

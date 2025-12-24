@@ -71,7 +71,7 @@
 }
 
 /* Desktop */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .my-games-scroll {
     overflow: visible;
     flex-wrap: wrap;
@@ -83,4 +83,4 @@
     max-width: calc(33.333% - 1rem);
     scroll-snap-align: unset;
   }
-}
+} */

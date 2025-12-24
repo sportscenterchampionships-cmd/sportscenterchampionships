@@ -38,9 +38,19 @@
       <li *ngFor="let c of results">
         <div class="competition">
           <app-competition-card [competition]="c"></app-competition-card>
-          <button class="" [disabled]="!c.is_open" (click)="requestJoin(c)">
-            {{ c.is_open ? 'Solicitar inscripción' : 'Inscripción cerrada' }}
-          </button>
+          <div class="actions">
+            <input *ngIf="c.is_private"
+                   class="code-input"
+                   [attr.name]="'code-'+c.id"
+                   [(ngModel)]="accessCodes[c.id]"
+                   maxlength="6"
+                   inputmode="numeric"
+                   pattern="\\d{6}"
+                   placeholder="Código (6)" />
+            <button class="" [disabled]="!c.is_open" (click)="requestJoin(c)">
+              {{ c.is_open ? (c.is_private ? 'Solicitar con código' : 'Solicitar inscripción') : 'Inscripción cerrada' }}
+            </button>
+          </div>
         </div>
       </li>
     </ul>

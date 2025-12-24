@@ -70,7 +70,7 @@
   transform: translateY(1px);
 }
 
-/* Desktop */
+/* Desktop
 @media (min-width: 768px) {
   .my-competition-scroll {
     overflow: visible;
@@ -83,4 +83,4 @@
     max-width: calc(33.333% - 1rem);
     scroll-snap-align: unset;
   }
-}
+} */

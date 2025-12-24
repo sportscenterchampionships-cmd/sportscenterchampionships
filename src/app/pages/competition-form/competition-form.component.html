@@ -67,6 +67,14 @@
                     <input class="form-check-input" type="checkbox" [(ngModel)]="competition.back_to_back" name="back_to_back" />
                     <span class="ms-2">Ida y vuelta</span>
                   </label>
+                  <label class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="competition.is_private" name="is_private" />
+                    <span class="ms-2">Competición privada (requiere código)</span>
+                  </label>
+                </div>
+                <div class="col-12" *ngIf="competition.is_private">
+                  <input class="form-control" placeholder="Código de acceso (6 cifras)" [(ngModel)]="competition.access_code" name="access_code" maxlength="6" inputmode="numeric" pattern="\\d{6}" />
+                  <small class="text-muted">Introduce exactamente 6 cifras.</small>
                 </div>
               </div>
             </section>
@@ -108,24 +116,21 @@
             <!-- Localización -->
             <section class="form-section">
               <h5>Localización</h5>
-              <div class="row g-3">
+              <app-sport-center (selected)="onCenterZoneSelected($event)"></app-sport-center>
+
+              <div class="row g-3 mt-2">
                 <div class="col-12 col-md-6">
-                  <select class="form-select" [(ngModel)]="competition.location" name="location">
-                    <option [ngValue]="null">Zona / Centro</option>
-                    <option [ngValue]="1">Centro Deportivo Norte</option>
-                    <option [ngValue]="2">Club Pádel Indoor</option>
-                  </select>
-                </div>
-                <div class="col-12 col-md-6">
-                  <input class="form-control" placeholder="Dirección / Pista" [(ngModel)]="competition.banner_url" name="banner_url" />
-                </div>
-                <div class="col-12 col-md-6">
+                  <label class="form-label">Zona horaria</label>
                   <select class="form-select" [(ngModel)]="competition.timezone" name="timezone">
                     <option [ngValue]="null">Zona horaria</option>
                     <option value="Europe/Madrid">Europe/Madrid</option>
                     <option value="Atlantic/Canary">Atlantic/Canary</option>
                   </select>
                 </div>
+              </div>
+
+              <div class="mt-2" *ngIf="selectedCenter">
+                <small class="text-muted">Seleccionado: {{ selectedCenter.name }}<span *ngIf="selectedZone"> - {{ selectedZone.name }}</span></small>
               </div>
             </section>
 

@@ -34,10 +34,10 @@
 }
 
 /* Desktop */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 
   .next-game-card {
     flex: 0 0 calc(33.333% - 1rem);
     max-width: calc(33.333% - 1rem);
   }
-}
+} */
