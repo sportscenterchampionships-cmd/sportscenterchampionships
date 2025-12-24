@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Competition } from '../../models/app.interface';
 import { SupabaseService } from '../../services/core/supabase.service';
 import { Router } from '@angular/router';
+import { BackButtonComponent } from '../../components/back-button/back-button.component';
 
 @Component({
   selector: 'app-competition-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BackButtonComponent],
   templateUrl: './competition-form.component.html',
   styleUrls: ['./competition-form.component.css'],
 })
@@ -29,8 +30,8 @@ export class CompetitionFormComponent {
     max_players_per_team: null,
     start_date: null,
     end_date: null,
-    registration_open_at: null,
-    registration_close_at: null,
+    // registration_open_at: null,
+    // registration_close_at: null,
     location: null,
     timezone: 'Europe/Madrid',
     organizer_name: '',

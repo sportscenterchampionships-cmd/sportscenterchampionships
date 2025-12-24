@@ -1,4 +1,5 @@
 <section class="classification">
+  <app-back-button label="Volver"></app-back-button>
   <header>
     <h1>Clasificación</h1>
     <p class="subtitle">Competición: {{ competitionId }}</p>
@@ -30,4 +31,24 @@
       <div class="cell pts">{{ r.points }}</div>
     </div>
   </div>
+
+  <section class="competition-details" *ngIf="competition">
+    <h2>Detalles de la competición</h2>
+    <div class="details-grid">
+      <div class="detail"><span class="label">Nivel:</span> <span class="value">{{ competition.level ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Estado:</span> <span class="value">{{ competition.status }}</span></div>
+      <div class="detail"><span class="label">Ida y vuelta:</span> <span class="value">{{ competition.back_to_back ? 'Sí' : 'No' }}</span></div>
+      <div class="detail"><span class="label">Pública:</span> <span class="value">{{ competition.is_public ? 'Sí' : 'No' }}</span></div>
+      <div class="detail"><span class="label">Inscripción abierta:</span> <span class="value">{{ competition.is_open ? 'Sí' : 'No' }}</span></div>
+      <div class="detail"><span class="label">Inicio:</span> <span class="value">{{ competition.start_date ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Fin:</span> <span class="value">{{ competition.end_date ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Localización:</span> <span class="value">{{ competition.location ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Zona horaria:</span> <span class="value">{{ competition.timezone ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Organizador:</span> <span class="value">{{ competition.organizer_name ?? '—' }}</span></div>
+      <div class="detail"><span class="label">Contacto:</span> <span class="value">{{ competition.organizer_email || competition.organizer_phone || '—' }}</span></div>
+      <div class="detail"><span class="label">Reglas:</span> <span class="value"><a *ngIf="competition.rules_url" [href]="competition.rules_url" target="_blank" rel="noopener">Ver reglas</a><span *ngIf="!competition.rules_url">—</span></span></div>
+      <div class="detail"><span class="label">Puntuación:</span> <span class="value">{{ competition.points_win }} / {{ competition.points_draw }} / {{ competition.points_loss }} (W/D/L)</span></div>
+      <div class="detail full"><span class="label">Descripción:</span> <span class="value">{{ competition.description || '—' }}</span></div>
+    </div>
+  </section>
 </section>

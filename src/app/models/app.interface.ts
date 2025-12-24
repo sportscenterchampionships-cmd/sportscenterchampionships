@@ -31,7 +31,7 @@ export interface TeamCard {
   id: number;
   name: string;
   sport_id: number;
-  sport_name: number;
+  sport_name: string;
   image?: string | null;
   gender?: Gender | null;
 }
@@ -86,7 +86,7 @@ export interface CompetitionCard {
   name: string;
   image?: string | null;
   sport_id: number;
-  sport_name: number;
+  sport_name: string;
   type?: CompetitionType | null;
   level?: number | null;
   start_date?: string | null;
@@ -136,8 +136,8 @@ export interface Competition {
   max_players_per_team: number | null;
   start_date: string | null; // YYYY-MM-DD
   end_date: string | null; // YYYY-MM-DD
-  registration_open_at: string | null; // YYYY-MM-DD
-  registration_close_at: string | null; // YYYY-MM-DD
+  // registration_open_at: string | null; // YYYY-MM-DD
+  // registration_close_at: string | null; // YYYY-MM-DD
   location: number | null;
   timezone: string | null;
   organizer_name: string | null;

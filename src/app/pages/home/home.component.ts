@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { NextGamesComponent } from '../components/next-games/next-games.component';
+import { MyGamesComponent } from '../components/my-games/my-games.component';
 
 interface Sport {
   id: number;
@@ -15,7 +15,7 @@ interface Sport {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, NextGamesComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, MyGamesComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })

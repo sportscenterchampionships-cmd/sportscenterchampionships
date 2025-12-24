@@ -1,18 +1,22 @@
-<ng-container *ngIf="!isAdd && competition; else addTpl">
+<ng-container *ngIf="competition">
   <div class="competition-card" [attr.aria-label]="'Editar equipo desde campeonato ' + competition.name" (click)="goToClassification()">
     <button *ngIf="isCreator" type="button" class="edit-btn" aria-label="Editar competición" (click)="editCompetition($event)">
       ✏️
     </button>
     <div class="image-wrap">
       <img [src]="competition.image || 'assets/images/sports-center.jpeg'" alt="{{ competition.name }}" />
+      <div class="next-game-overlay">
+        <div class="next-game-info">
+          <div class="name">{{ competition.name }}</div>
+        </div>
+      </div>
     </div>
-    <div class="name">{{ competition.name }}</div>
   </div>
 </ng-container>
-
+<!--
 <ng-template #addTpl>
   <button class="add-card" type="button" [routerLink]="['/team']" aria-label="Crear o editar equipo">
     <span class="plus">+</span>
     <span class="label">Crear</span>
   </button>
-</ng-template>
+</ng-template> -->

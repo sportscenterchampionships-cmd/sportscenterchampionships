@@ -1,4 +1,3 @@
-
 /* HERO HEADER */
 .hero-header {
   position: relative;
@@ -300,8 +299,8 @@
 
 
 /* NEXT GAMES
-.next-games-section {
-  padding: 3rem 0;
+.my-games-section {
+  // ...existing styles...
 }
 
 .next-game-card {

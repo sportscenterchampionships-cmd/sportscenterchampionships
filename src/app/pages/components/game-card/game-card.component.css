@@ -1,24 +1,7 @@
 
-/* NEXT GAMES - horizontal scroll */
-.next-games-section {
-  /* padding: 2.5rem 0; */
-}
-
-.next-games-scroll {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scroll-snap-type: x mandatory;
-}
-
-.next-games-scroll::-webkit-scrollbar {
-  display: none;
-}
-
 .next-game-card {
-  flex: 0 0 70%;
-  max-width: 70%;
+  flex: 0 0 100%;
+  max-width: 100%;
   border-radius: 14px;
   overflow: hidden;
   position: relative;
@@ -52,11 +35,6 @@
 
 /* Desktop */
 @media (min-width: 768px) {
-  .next-games-scroll {
-    overflow: visible;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
 
   .next-game-card {
     flex: 0 0 calc(33.333% - 1rem);

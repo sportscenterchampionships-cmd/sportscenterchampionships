@@ -1,16 +1,17 @@
 /* Card container */
 .competition-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  scroll-snap-align: start;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   display: grid;
   grid-template-rows: auto 1fr;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  border-radius: 12px;
+  gap: 0;
+  padding: 0; /* remove inner padding to match game-card */
   background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: transform 150ms ease, box-shadow 150ms ease;
-  cursor: pointer;
-  width: var(--competition-card-width, 220px);
-  box-sizing: border-box;
 }
 
 .competition-card:hover {
@@ -22,9 +23,10 @@
 .image-wrap {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 */
+  height: 160px; /* match game-card image height */
+  padding-top: 0; /* disable 16:9 ratio */
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 0; /* outer radius already applied */
   background: #f3f4f6;
 }
 
@@ -38,22 +40,38 @@
 
 /* Name/title */
 .name {
-  font-size: 1rem;
+  font-size: .95rem;
   font-weight: 600;
-  color: #111827;
-  line-height: 1.25rem;
-  padding: 0 0.25rem;
-  white-space: normal;   /* allow wrapping */
-  overflow: visible;     /* show full text */
-  text-overflow: clip;   /* disable ellipsis */
-  overflow-wrap: anywhere;
+  color: white;
+  text-align: left;
+  padding: 0.75rem;
+  text-shadow: 1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+               1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
+
+.next-game-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  align-items: flex-end;
+}
+
+.next-game-info {
+  padding: 0.75rem;
+  color: #fff;
+}
+
 
 /* Responsive tweaks */
 @media (min-width: 768px) {
   .competition-card {
-    padding: 1rem;
-    width: var(--competition-card-width, 220px);
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
   }
   .name {
     font-size: 1.05rem;

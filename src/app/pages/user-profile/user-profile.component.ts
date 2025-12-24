@@ -6,6 +6,7 @@ import { SportCard } from '../../models/app.interface';
 import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
 import { SportsSelectorComponent } from '../components/sports-selector/sports-selector.component';
+import { BackButtonComponent } from '../../components/back-button/back-button.component';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { SportsSelectorComponent } from '../components/sports-selector/sports-se
   imports: [
     CommonModule,
     FormsModule,
-    SportsSelectorComponent
+    SportsSelectorComponent,
+    BackButtonComponent
   ],
   standalone: true,
   templateUrl: './user-profile.component.html',

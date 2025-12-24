@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TeamAvailabilityComponent } from '../team-availability/team-availability.component';
+import { BackButtonComponent } from '../../components/back-button/back-button.component';
 
 @Component({
   selector: 'app-team-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, TeamAvailabilityComponent],
+  imports: [CommonModule, FormsModule, TeamAvailabilityComponent, BackButtonComponent],
   templateUrl: './team-form.component.html',
   styleUrls: ['./team-form.component.css'],
 })

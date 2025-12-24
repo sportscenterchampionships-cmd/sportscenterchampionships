@@ -1,5 +1,6 @@
 <div class="competition-page">
   <div class="container py-4">
+    <app-back-button label="Volver"></app-back-button>
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <div class="card competition-card shadow-lg">
@@ -93,14 +94,14 @@
                   <label class="form-label">Fin</label>
                   <input type="date" class="form-control" [(ngModel)]="competition.end_date" name="end_date" />
                 </div>
-                <div class="col-12 col-md-6">
+                <!-- <div class="col-12 col-md-6">
                   <label class="form-label">Apertura inscripciones</label>
                   <input type="date" class="form-control" [(ngModel)]="competition.registration_open_at" name="registration_open_at" />
                 </div>
                 <div class="col-12 col-md-6">
                   <label class="form-label">Cierre inscripciones</label>
                   <input type="date" class="form-control" [(ngModel)]="competition.registration_close_at" name="registration_close_at" />
-                </div>
+                </div> -->
               </div>
             </section>
 
@@ -183,7 +184,7 @@
             </section>
 
             <!-- Inscripción -->
-            <section class="form-section">
+            <!-- <section class="form-section">
               <h5>Inscripción</h5>
               <div class="row g-3">
                 <div class="col-8">
@@ -196,7 +197,7 @@
                   </select>
                 </div>
               </div>
-            </section>
+            </section> -->
 
             <div class="mt-2" *ngIf="error" style="color:#c62828;">{{ error }}</div>
             <div class="mt-2" *ngIf="success" style="color:#2e7d32;">Guardado correctamente</div>

@@ -14,37 +14,15 @@
 </header>
 
 <section class="section">
-  <div class="section-header d-flex align-items-center ">
-    <h2 class="fw-bold  mx-2">Mis equipos</h2>
-    <button class="add-card" type="button" [routerLink]="['/team']" aria-label="Crear o editar equipo">
-      <span class="plus">+</span>
-    </button>
-  </div>
-
-  <div class="carousel mt-2">
-    <ng-container *ngFor="let team of teams">
-      <app-team-card class="snap" [team]="team"></app-team-card>
-    </ng-container>
-  </div>
+  <app-my-games [games]="games"></app-my-games>
 </section>
 
 <section class="section">
-  <app-next-games [games]="games"></app-next-games>
+  <app-my-teams [teams]="teams"></app-my-teams>
 </section>
 
 <section class="section">
-
-  <div class="section-header d-flex align-items-center ">
-    <h2 class="fw-bold  mx-2">Mis campeonatos</h2>
-    <button class="add-card" type="button" [routerLink]="['/competition']" aria-label="Crear o editar equipo">
-      <span class="plus">+</span>
-    </button>
-  </div>
-  <div class="carousel mt-2">
-    <ng-container *ngFor="let comp of competitions">
-      <app-competition-card class="snap" [competition]="comp"></app-competition-card>
-    </ng-container>
-  </div>
+  <app-my-competitions [competitions]="competitions"></app-my-competitions>
 </section>
 
 <app-footer></app-footer>

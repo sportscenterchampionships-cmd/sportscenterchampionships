@@ -1,0 +1,20 @@
+<!-- NEXT TEAMS SECTION -->
+<section class="my-games-section">
+  <div class="container">
+    <div class="section-header d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold mb-0">Mis equipos</h2>
+      <!-- action buttons -->
+      <div class="d-flex align-items-center gap-2">
+        <button class="action-btn" title="Crear equipo" (click)="onCreateTeam()">
+          <img class="button-icon" src="assets/icons/team-new.png" alt="Nuevo equipo" />
+        </button>
+        <button class="action-btn" title="Unirse a equipo" (click)="onJoinTeam()">
+          <img class="button-icon" src="assets/icons/team-add.png" alt="Unirse a equipo" />
+        </button>
+      </div>
+    </div>
+    <div class="my-games-scroll">
+      <app-team-card *ngFor="let team of teams" [team]="team"></app-team-card>
+    </div>
+  </div>
+</section>

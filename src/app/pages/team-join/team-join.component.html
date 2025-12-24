@@ -1,0 +1,40 @@
+<section class="team-join">
+  <app-back-button></app-back-button>
+
+  <h1>Unirse a un equipo</h1>
+
+  <form class="filters" (ngSubmit)="search()">
+    <input type="text" placeholder="Nombre del equipo" [(ngModel)]="filters.name" name="name" />
+
+    <select [(ngModel)]="filters.sport" name="sport">
+      <option value="">Deporte</option>
+      <option value="football">Fútbol</option>
+      <option value="basket">Baloncesto</option>
+      <option value="tennis">Tenis</option>
+      <option value="padel">Pádel</option>
+    </select>
+
+    <select [(ngModel)]="filters.level" name="level">
+      <option value="">Nivel</option>
+      <option value="beginner">Iniciación</option>
+      <option value="intermediate">Intermedio</option>
+      <option value="advanced">Avanzado</option>
+    </select>
+
+    <input type="text" placeholder="Centro deportivo" [(ngModel)]="filters.center" name="center" />
+
+    <button type="submit">Buscar</button>
+  </form>
+
+  <div class="results" *ngIf="results.length">
+    <h2>Resultados</h2>
+    <ul>
+      <li *ngFor="let team of results">
+        <app-team-card [team]="team"></app-team-card>
+        <button (click)="requestJoin(team)">Solicitar unirme</button>
+      </li>
+    </ul>
+  </div>
+
+  <p class="empty" *ngIf="!results.length">Usa los filtros para encontrar un equipo.</p>
+</section>

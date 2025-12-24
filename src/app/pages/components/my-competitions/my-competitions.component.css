@@ -1,0 +1,86 @@
+/* NEXT COMPETITIONS - horizontal scroll */
+.my-competition-section {
+  margin-top: 0.5rem;
+}
+
+.my-competition-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.my-competition-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Make each competition card a flex item and snap */
+.my-competition-scroll app-competition-card {
+  flex: 0 0 70%;
+  max-width: 70%;
+  scroll-snap-align: start;
+}
+
+/* .action-btn{
+  width: 25px;
+  height: 25px;
+} */
+
+.button-icon{
+  width: 24px;
+  height: 24px;
+}
+
+/* Header: title left, actions right */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Action buttons container spacing */
+.section-header .actions,
+.section-header .d-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Pretty button styling */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.06s ease;
+}
+
+.action-btn:hover {
+  background: #f7f7f7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.action-btn:active {
+  transform: translateY(1px);
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .my-competition-scroll {
+    overflow: visible;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .my-competition-scroll app-competition-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    scroll-snap-align: unset;
+  }
+}
