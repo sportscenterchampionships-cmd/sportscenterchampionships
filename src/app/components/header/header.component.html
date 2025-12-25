@@ -2,14 +2,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top main-navbar">
   <div class="container-fluid d-flex align-items-center">
     <!-- ☰ HAMBURGUESA (solo móvil) -->
-    <button
+    <!-- <button
       class="navbar-toggler d-lg-none me-2"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#mainNavbar"
     >
       <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> -->
 
     <!-- LOGO (solo desktop) -->
     <a class="navbar-brand fw-bold d-none d-lg-block" href="#">
@@ -46,7 +46,36 @@
         </button>
       </ng-template>
     </div>
-
+    <li
+    class="nav-item ms-3 d-none d-lg-flex align-items-center gap-2"
+    *ngIf="user$ | async as user"
+  >
+    <button
+      class="btn btn-light btn-sm rounded-pill fw-bold"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+    <img
+      [src]="
+        user.user_metadata?.avatar_url ||
+        'assets/images/default-avatar.jpg'
+      "
+      alt="avatar"
+      class="user-avatar"
+    />
+  </li>
+  <li
+    class="nav-item ms-3 d-none d-lg-flex align-items-center gap-2"
+    *ngIf="(user$ | async) === null"
+  >
+    <button
+      class="btn btn-light btn-sm rounded-pill fw-bold"
+      (click)="login()"
+    >
+      Login
+    </button>
+  </li>
     <!-- MENÚ PRINCIPAL -->
     <!-- <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">

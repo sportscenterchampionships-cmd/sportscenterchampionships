@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { GameCard } from '../../../models/app.interface';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-card',
@@ -12,6 +13,8 @@ export class GameCardComponent {
 
   @Input() game: GameCard | null = null;
 
+  private router = inject(Router);
+
   getGameImage(sport: string): string {
     switch (sport) {
       case 'tennis':
@@ -21,5 +24,10 @@ export class GameCardComponent {
       default:
         return 'assets/images/default-field.jpeg';
     }
+  }
+
+  onOpenGame() {
+    if (!this.game) return;
+    this.router.navigate(['/game'], { state: { gameCard: this.game } });
   }
 }

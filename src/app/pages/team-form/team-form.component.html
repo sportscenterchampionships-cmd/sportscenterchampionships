@@ -1,6 +1,9 @@
 <div class="team-page">
   <div class="container py-4">
-    <app-back-button label="Volver" ariaLabel="Volver atrás"></app-back-button>
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
+      <h2 class="m-0">Equipo</h2>
+    </div>
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-7">
 
@@ -8,7 +11,6 @@
 
           <!-- HEADER -->
           <div class="team-header">
-            <h2>Equipo</h2>
             <p>Alta y edición de equipo</p>
           </div>
 

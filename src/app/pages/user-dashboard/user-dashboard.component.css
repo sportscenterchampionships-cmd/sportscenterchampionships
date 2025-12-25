@@ -11,25 +11,46 @@
 }
 
 .avatar {
-  width: 44px;
-  height: 44px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+.clickable {
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
 }
 
 .notif-btn {
-  background: none;
+  background: #2563eb;
   border: none;
-  font-size: 1.3rem;
+  color: #fff;
+  font-size: 1.2rem;
   position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(37,99,235,.25);
+  cursor: pointer;
+}
+
+.notif-btn:hover {
+  background: #1d4ed8;
 }
 
 .badge {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 8px;
-  height: 8px;
-  background: red;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  background: #ef4444;
+  border: 2px solid #fff;
   border-radius: 50%;
 }
 

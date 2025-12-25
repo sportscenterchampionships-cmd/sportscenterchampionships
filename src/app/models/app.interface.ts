@@ -60,7 +60,8 @@ export interface GameCard {
   level?: number | null;
   team1: TeamCard | null;
   team2: TeamCard | null;
-
+  status?: 'scheduled' | 'pending' | 'completed';
+  result?: string | null; // e.g., "6-4, 3-6, 7-6" for tennis, "6-2" for padel
   competition_id?: number | null;
 }
 

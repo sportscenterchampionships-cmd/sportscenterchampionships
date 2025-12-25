@@ -1,7 +1,8 @@
 <section class="notifications-container container py-3">
-  <div class="d-flex align-items-center justify-content-between mb-3">
+  <div class="d-flex align-items-center gap-2 mb-3">
+    <!-- Back button to the left, icon-only -->
+    <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
     <h2 class="m-0">Notificaciones</h2>
-    <app-back-button ariaLabel="Volver" label="Volver"></app-back-button>
   </div>
 
   <div *ngIf="notifications.length; else empty">

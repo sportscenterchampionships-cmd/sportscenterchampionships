@@ -1,0 +1,99 @@
+<div class="game-page">
+  <header class="topbar">
+    <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
+    <h2 class="title">{{ pageTitle }}</h2>
+  </header>
+
+  <section class="hero" *ngIf="gameCard">
+    <img [src]="gameCard.sport_name === 'tennis' ? 'assets/images/sports/tennis/tennis-field-1.jpeg' : (gameCard.sport_name === 'padel' ? 'assets/images/sports/padel/padel-field-1.jpeg' : 'assets/images/default-field.jpeg')" alt="Imagen deporte" />
+    <div class="overlay">
+      <div class="teams">{{ gameCard.team1?.name }} vs {{ gameCard.team2?.name }}</div>
+      <div class="meta">
+        <span>{{ (game?.date || gameCard.date) | date: 'EEE d MMM · HH:mm' }}</span>
+        <span>📍 {{ gameCard.location || '-' }}</span>
+        <span>Nivel: {{ gameCard.level || '-' }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="details" *ngIf="game || gameCard">
+    <div class="detail-row">
+      <span class="label">ID</span>
+      <span class="value">{{ (game?.id || gameCard?.id) }}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Deporte</span>
+      <span class="value">{{  gameCard?.sport_name || '-' }}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Tipo</span>
+      <span class="value">{{ (game?.type || gameCard?.type) ?? '-' }}</span>
+    </div>
+    <div class="detail-row" *ngIf="gameCard">
+      <span class="label">Equipo 1</span>
+      <span class="value">{{ gameCard.team1?.name || '-' }}</span>
+    </div>
+    <div class="detail-row" *ngIf="gameCard">
+      <span class="label">Equipo 2</span>
+      <span class="value">{{ gameCard.team2?.name || '-' }}</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Ubicación</span>
+      <span class="value">{{ gameCard?.location || '-' }}</span>
+    </div>
+    <div class="detail-row" *ngIf="game?.result">
+      <span class="label">Resultado</span>
+      <span class="value">{{ game?.result }}</span>
+    </div>
+  </section>
+
+  <section *ngIf="showPlanning()" class="card planning">
+    <h3>Planificar partido</h3>
+    <div class="days scroller-x">
+      <button
+        *ngFor="let day of availability()"
+        [disabled]="!day.enabled"
+        [class.active]="day.key === selectedDayKey()"
+        (click)="selectDay(day)">
+        {{ day.label }}
+      </button>
+    </div>
+    <div class="slots">
+      <label class="slot">
+        <input type="radio" name="slot" (change)="pickTime('morning')">
+        Mañana: {{ selectedMorningStart }} - {{ selectedMorningEnd }}
+      </label>
+      <label class="slot">
+        <input type="radio" name="slot" (change)="pickTime('afternoon')">
+        Tarde: {{ selectedAfternoonStart }} - {{ selectedAfternoonEnd }}
+      </label>
+    </div>
+    <button class="primary" (click)="savePlanning()">Guardar planificación</button>
+  </section>
+
+  <section *ngIf="showResult()" class="card result">
+    <h3>Introducir resultado</h3>
+
+    <div *ngIf="sportKey === 'padel' || sportKey === 'tennis'" class="sets">
+      <label class="bestof">
+        Mejor de:
+        <select [ngModel]="bestOf()" (ngModelChange)="onBestOfChange($event)">
+          <option [ngValue]="3">3 sets</option>
+          <option [ngValue]="5">5 sets</option>
+        </select>
+      </label>
+
+      <div class="set-row" *ngFor="let s of setScores(); let i = index">
+        <span class="set-label">Set {{ i + 1 }}</span>
+        <input class="score" type="number" min="0" max="7" placeholder="Equipo 1" [(ngModel)]="setScores()[i].team1">
+        <input class="score" type="number" min="0" max="7" placeholder="Equipo 2" [(ngModel)]="setScores()[i].team2">
+      </div>
+
+      <button class="primary" (click)="saveResult()">Guardar resultado</button>
+    </div>
+
+    <div *ngIf="sportKey !== 'padel' && sportKey !== 'tennis'" class="not-implemented">
+      Formato de resultado no implementado para este deporte.
+    </div>
+  </section>
+</div>

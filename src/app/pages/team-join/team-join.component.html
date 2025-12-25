@@ -1,7 +1,8 @@
 <section class="team-join">
-  <app-back-button></app-back-button>
-
-  <h1>Unirse a un equipo</h1>
+  <div class="d-flex align-items-center gap-2 mb-2">
+    <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
+    <h1 class="m-0">Unirse a un equipo</h1>
+  </div>
 
   <form class="filters" (ngSubmit)="search()">
     <input type="text" placeholder="Nombre del equipo" [(ngModel)]="filters.name" name="name" />

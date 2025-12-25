@@ -1,9 +1,11 @@
 <div class="onboarding-hero">
   <div class="overlay"></div>
 
-  <app-back-button label="Volver"></app-back-button>
   <div class="onboarding-card">
-    <h2>Bienvenido 👋</h2>
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
+      <h2 class="m-0">Bienvenido 👋</h2>
+    </div>
     <p class="subtitle">Crea tu perfil y empieza a competir</p>
 
     <form (ngSubmit)="saveProfile()" #form="ngForm">

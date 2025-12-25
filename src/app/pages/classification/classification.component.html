@@ -1,45 +1,59 @@
 <section class="classification">
-  <app-back-button label="Volver"></app-back-button>
-  <header>
-    <h1>Clasificación</h1>
-    <p class="subtitle">Competición: {{ competitionId }}</p>
+  <header class="d-flex align-items-center gap-2 mb-3 classification-header">
+    <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
+    <div class="title-area">
+      <h1 class="m-0">Clasificación</h1>
+      <p class="subtitle">Competición: {{ competition?.name || competitionId }}</p>
+    </div>
+    <figure class="competition-thumb" *ngIf="competition">
+      <img
+        [src]="competition.banner_url || 'assets/images/sports-center.jpeg'"
+        [alt]="'Imagen de ' + (competition.name || 'competición')"
+      />
+    </figure>
   </header>
 
   <div class="standings" aria-label="Tabla de clasificación">
-    <div class="row header" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
-      <div class="cell team">Equipo</div>
-      <div class="cell pj">PJ</div>
-      <div class="cell num">W</div>
-      <div class="cell num">D</div>
-      <div class="cell num" *ngIf="hasLoses">L</div>
-      <div class="cell pts">PTOS</div>
-    </div>
-
-    <div class="row" *ngFor="let r of rows; let i = index" [class.leader]="i === 0" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
-      <div class="cell team">
-        <!-- Wrap avatar and position to overlay the number over the image -->
-        <div class="avatar-wrapper">
-          <img class="avatar" [src]="'/assets/images/team-default.png'" [alt]="'Escudo ' + r.team" />
-          <span class="pos" [attr.aria-label]="'Posición ' + r.position">{{ r.position }}</span>
-        </div>
-        <span class="name" [title]="r.team">{{ r.team }}</span>
+    <div class="standings-content">
+      <div class="row header" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
+        <div class="cell team">Equipo</div>
+        <div class="cell pj">PJ</div>
+        <div class="cell num">W</div>
+        <div class="cell num">D</div>
+        <div class="cell num" *ngIf="hasLoses">L</div>
+        <div class="cell pts">PTOS</div>
       </div>
-      <div class="cell pj">{{ r.played }}</div>
-      <div class="cell num">{{ r.won }}</div>
-      <div class="cell num">{{ r.draw }}</div>
-      <div class="cell num" *ngIf="hasLoses">{{ r.lost }}</div>
-      <div class="cell pts">{{ r.points }}</div>
+
+      <div class="row" *ngFor="let r of rows; let i = index" [class.leader]="i === 0" [ngClass]="hasLoses ? 'cols-6' : 'cols-5'">
+        <div class="cell team">
+          <div class="avatar-wrapper">
+            <img class="avatar" [src]="'assets/images/team-default.png'" [alt]="'Escudo ' + r.team" />
+            <span class="pos" [attr.aria-label]="'Posición ' + r.position">{{ r.position }}</span>
+          </div>
+          <span class="name" [title]="r.team">{{ r.team }}</span>
+        </div>
+        <div class="cell pj">{{ r.played }}</div>
+        <div class="cell num">{{ r.won }}</div>
+        <div class="cell num">{{ r.draw }}</div>
+        <div class="cell num" *ngIf="hasLoses">{{ r.lost }}</div>
+        <div class="cell pts">{{ r.points }}</div>
+      </div>
     </div>
   </div>
 
   <section class="competition-details" *ngIf="competition">
-    <h2>Detalles de la competición</h2>
-    <div class="details-grid">
+    <div class="details-header">
+      <h2>Detalles de la competición</h2>
+      <div class="badges">
+        <span class="badge" [class.success]="competition.is_public">{{ competition.is_public ? 'Pública' : 'Privada' }}</span>
+        <span class="badge" [class.success]="competition.is_open">{{ competition.is_open ? 'Inscripción abierta' : 'Inscripción cerrada' }}</span>
+        <span class="badge" [class.success]="competition.back_to_back">{{ competition.back_to_back ? 'Ida y vuelta' : 'Solo ida' }}</span>
+      </div>
+    </div>
+
+    <div class="details-grid card">
       <div class="detail"><span class="label">Nivel:</span> <span class="value">{{ competition.level ?? '—' }}</span></div>
-      <div class="detail"><span class="label">Estado:</span> <span class="value">{{ competition.status }}</span></div>
-      <div class="detail"><span class="label">Ida y vuelta:</span> <span class="value">{{ competition.back_to_back ? 'Sí' : 'No' }}</span></div>
-      <div class="detail"><span class="label">Pública:</span> <span class="value">{{ competition.is_public ? 'Sí' : 'No' }}</span></div>
-      <div class="detail"><span class="label">Inscripción abierta:</span> <span class="value">{{ competition.is_open ? 'Sí' : 'No' }}</span></div>
+      <div class="detail"><span class="label">Estado:</span> <span class="value">{{ competition.status || '—' }}</span></div>
       <div class="detail"><span class="label">Inicio:</span> <span class="value">{{ competition.start_date ?? '—' }}</span></div>
       <div class="detail"><span class="label">Fin:</span> <span class="value">{{ competition.end_date ?? '—' }}</span></div>
       <div class="detail"><span class="label">Localización:</span> <span class="value">{{ competition.location ?? '—' }}</span></div>

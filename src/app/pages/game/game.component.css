@@ -1,0 +1,47 @@
+.game-container { padding: 16px; }
+.game-info div { margin: 4px 0; }
+.planning .days { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.planning .days button { padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc; background: #f7f7f7; cursor: pointer; }
+.planning .days button.active { background: #1976d2; color: white; border-color: #1976d2; }
+.slots .slot { margin: 6px 0; }
+.actions { margin-top: 12px; }
+.result .set-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+.result input[type="number"] { width: 80px; padding: 4px; }
+
+/* Mobile-first elegant design */
+.game-page { padding: 12px; max-width: 640px; margin: 0 auto; }
+.topbar { display: flex; align-items: center; gap: 12px; }
+.title { font-size: 1.25rem; margin: 0; }
+
+.hero { position: relative; border-radius: 12px; overflow: hidden; margin: 12px 0 16px; }
+.hero img { width: 100%; height: 160px; object-fit: cover; filter: brightness(0.8); }
+.hero .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; color: #fff; background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0)); }
+.hero .teams { font-weight: 600; font-size: 1rem; }
+.hero .meta { display: flex; gap: 8px; flex-wrap: wrap; font-size: 0.85rem; opacity: 0.9; }
+
+.details { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+.detail-row:last-child { border-bottom: none; }
+.label { color: #555; }
+.value { font-weight: 600; }
+
+.card { background: #fff; border-radius: 12px; padding: 12px; margin-top: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.days button { white-space: nowrap; padding: 8px 12px; border-radius: 20px; border: 1px solid #ddd; background: #f9f9f9; }
+.days button.active { background: #1e88e5; color: #fff; border-color: #1e88e5; }
+.slots { display: grid; gap: 8px; margin-top: 8px; }
+.slot { display: flex; align-items: center; gap: 8px; }
+
+.primary { width: 100%; margin-top: 12px; padding: 10px 12px; border: none; border-radius: 10px; background: #1e88e5; color: #fff; font-weight: 600; }
+
+.sets { display: grid; gap: 10px; }
+.bestof { display: flex; align-items: center; gap: 8px; }
+.set-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; align-items: center; }
+.set-label { color: #555; }
+.score { padding: 8px; border: 1px solid #ddd; border-radius: 8px; }
+
+.not-implemented { color: #777; font-size: 0.95rem; }
+
+@media (min-width: 768px) {
+  .hero img { height: 220px; }
+}

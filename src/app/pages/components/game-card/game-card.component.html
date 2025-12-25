@@ -1,6 +1,7 @@
 <div
   *ngIf="game"
   class="next-game-card"
+  (click)="onOpenGame()"
 >
   <img
     [src]="getGameImage(game.sport_name || '')"
@@ -11,20 +12,36 @@
   <div class="next-game-overlay">
     <div class="next-game-info">
       <small class="badge bg-dark text-uppercase mb-1">
-        {{ game.type }}
+        {{ game.status || 'unplanned' }}
       </small>
 
       <div class="fw-semibold small">
         {{ game.team1?.name }} vs {{ game.team2?.name }}
       </div>
 
-      <small class="text-white-50">
+      <small class="text-white-50" *ngIf="game.date">
         {{ game.date | date: 'dd MMM · HH:mm' }}
       </small>
       <br />
-      <small class="text-white-50">
+      <small class="text-white-50" *ngIf="game.location">
         📍 {{ game.location }}
       </small>
+
+      <!-- Completed: official-style result display -->
+      <div *ngIf="game.status === 'completed' && game.result" class="result-box mt-2">
+        <div class="result-title">Resultado oficial</div>
+        <div class="result-score">{{ game.result }}</div>
+      </div>
+
+      <!-- Scheduled: action to enter result -->
+      <button *ngIf="game.status === 'scheduled'" class="btn btn-sm btn-light mt-2">
+        Introducir resultado
+      </button>
+
+      <!-- Unplanned (no status): action to plan match -->
+      <button *ngIf="!game.status" class="btn btn-sm btn-primary mt-2">
+        Planificar partido
+      </button>
     </div>
   </div>
 </div>
