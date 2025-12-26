@@ -2,8 +2,8 @@
   <div class="team-card" [routerLink]="['/team']" [attr.aria-label]="'Editar equipo ' + team.name">
     <div class="image-wrap">
       <img [src]="team.image || 'assets/images/team-default.png'" alt="{{ team.name }}" />
-      <div class="my-game-overlay">
-        <div class="my-game-info">
+      <div class="my-team-overlay">
+        <div class="my-team-info">
           <div class="name">{{ team.name }}</div>
         </div>
       </div>

@@ -292,11 +292,73 @@
   }
 }
 
+/* HOW IT WORKS */
+.how-it-works-section {
+  padding: 2.5rem 0 2rem;
+  background: #fff;
+}
 
+.how-it-works-section h2 {
+  color: #222;
+}
 
+.how-it-works-section .text-muted {
+  color: #6c757d !important;
+}
 
+.rules-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
 
+.rules-list li {
+  list-style: none;
+  background: #f8f9fa;
+  border: 1px solid #eef1f4;
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem 0.75rem 2.25rem;
+  position: relative;
+  color: #333;
+}
 
+.rules-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #2e7d32;
+}
+
+/* Hover and subtle elevation */
+.rules-list li:hover {
+  background: #f1f4f8;
+  border-color: #e2e6ea;
+}
+
+/* Responsive: 2 columns on md+ */
+@media (min-width: 768px) {
+  .rules-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Compact on small screens */
+@media (max-width: 576px) {
+  .rules-list li {
+    padding-left: 2rem;
+    font-size: 0.95rem;
+  }
+}
 
 /* NEXT GAMES
 .my-games-section {

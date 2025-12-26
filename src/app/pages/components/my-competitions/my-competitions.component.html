@@ -16,6 +16,15 @@
     </div>
     <div class="my-competition-scroll">
       <app-competition-card *ngFor="let comp of competitions" [competition]="comp"></app-competition-card>
+      <!-- Empty state -->
+      <div *ngIf="!competitions || competitions.length === 0" class="empty-card">
+        <div class="empty-card-body">
+          <div class="empty-info">
+            <p class="mb-1 fw-bold">No tienes campeonatos</p>
+            <small>Crea o únete a un campeonato para ver tus partidos y clasificaciones.</small>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

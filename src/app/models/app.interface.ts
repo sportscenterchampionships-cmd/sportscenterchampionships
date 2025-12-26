@@ -46,7 +46,11 @@ export interface Game {
   level?: number | null;
   result?: string | null;
   winner_team_id?: number | null;
-  week_index?: number | null;
+  week_index?: number | null;//jornada
+  status?: 'scheduled' | 'pending' | 'completed';
+  updated_at: string;
+  created_by?: number | null;
+  updated_by?: number | null;
   created_at: string;
 }
 

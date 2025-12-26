@@ -1,5 +1,5 @@
 <!-- NEXT TEAMS SECTION -->
-<section class="my-games-section">
+<section class="my-teams-section">
   <div class="container">
     <div class="section-header d-flex justify-content-between align-items-center">
       <h2 class="fw-bold mb-0">Mis equipos</h2>
@@ -13,8 +13,17 @@
         </button>
       </div>
     </div>
-    <div class="my-games-scroll">
+    <div class="my-teams-scroll">
       <app-team-card *ngFor="let team of teams" [team]="team"></app-team-card>
+      <!-- Empty state -->
+      <div *ngIf="!teams || teams.length === 0" class="empty-card">
+        <div class="empty-card-body">
+          <div class="empty-info">
+            <p class="mb-1 fw-bold">No tienes equipos</p>
+            <small>Crea o únete a un equipo para empezar a competir.</small>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

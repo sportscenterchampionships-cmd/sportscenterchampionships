@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { GameCard } from '../../../models/app.interface';
 import { GameCardComponent } from '../game-card/game-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-games',
@@ -12,6 +13,9 @@ import { GameCardComponent } from '../game-card/game-card.component';
 })
 export class MyGamesComponent implements OnInit {
   @Input() games!: GameCard[];
+
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     if (!this.games){
       const games: GameCard[] = [
@@ -25,4 +29,7 @@ export class MyGamesComponent implements OnInit {
     }
   }
 
+  onOpenCalendar() {
+    this.router.navigate(['/games']);
+  }
 }

@@ -70,17 +70,12 @@
   transform: translateY(1px);
 }
 
-/* Desktop
-@media (min-width: 768px) {
-  .my-competition-scroll {
-    overflow: visible;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
+/* Desktop: allow cards to size naturally */
+@media (min-width: 770px) {
   .my-competition-scroll app-competition-card {
-    flex: 0 0 calc(33.333% - 1rem);
-    max-width: calc(33.333% - 1rem);
-    scroll-snap-align: unset;
+    /* flex: 0 0 auto; */
+    max-width: 260px;
   }
-} */
+}
+
+

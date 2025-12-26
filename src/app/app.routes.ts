@@ -11,6 +11,7 @@ import { TeamJoinComponent } from './pages/team-join/team-join.component';
 import { CompetitionJoinComponent } from './pages/competition-join/competition-join.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { GameComponent } from './pages/game/game.component';
+import { GamesListComponent } from './pages/games-list/games-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'classification/:id', component: ClassificationComponent },
   { path: 'notifications', component: NotificationsComponent, data: { backTo: '/dashboard' } },
   { path: 'game', component: GameComponent },
+  { path: 'games', component: GamesListComponent, data: { backTo: '/dashboard' } },
   { path: '**', redirectTo: '' },
 ];

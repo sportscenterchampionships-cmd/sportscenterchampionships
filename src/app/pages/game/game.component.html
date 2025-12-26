@@ -5,7 +5,7 @@
   </header>
 
   <section class="hero" *ngIf="gameCard">
-    <img [src]="gameCard.sport_name === 'tennis' ? 'assets/images/sports/tennis/tennis-field-1.jpeg' : (gameCard.sport_name === 'padel' ? 'assets/images/sports/padel/padel-field-1.jpeg' : 'assets/images/default-field.jpeg')" alt="Imagen deporte" />
+    <img [src]="gameCard.sport_name === 'tennis' ? 'assets/images/sports/tennis/tennis-field-1.jpeg' : (gameCard.sport_name === 'padel' ? 'assets/images/sports/padel/padel-field-1.jpeg' : 'assets/images/default-field.jpg')" alt="Imagen deporte" />
     <div class="overlay">
       <div class="teams">{{ gameCard.team1?.name }} vs {{ gameCard.team2?.name }}</div>
       <div class="meta">

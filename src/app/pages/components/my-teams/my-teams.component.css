@@ -1,24 +1,56 @@
 /* MY TEAMS - horizontal scroll */
-.my-games-section {
+.my-teams-section {
   margin-top: 0.5rem;
 }
 
-.my-games-scroll {
+.my-teams-scroll {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 }
 
-.my-games-scroll::-webkit-scrollbar {
+.my-teams-scroll::-webkit-scrollbar {
   display: none;
 }
 
 /* Make each team card a flex item and snap */
-.my-games-scroll app-team-card {
+.my-teams-scroll app-team-card {
   flex: 0 0 70%;
   max-width: 70%;
   scroll-snap-align: start;
+}
+
+/* Empty state card matches team card size */
+.my-teams-scroll .empty-card {
+  flex: 0 0 70%;
+  max-width: 70%;
+  scroll-snap-align: start;
+}
+
+.empty-card-body {
+  width: 100%;
+  border: 1px dashed rgba(0,0,0,0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+.empty-info {
+  color: #555;
+}
+
+/* Desktop: allow cards to size naturally */
+@media (min-width: 770px) {
+  .my-teams-scroll app-team-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
+
+  .my-teams-scroll .empty-card {
+    flex: 0 0 auto;
+    max-width: none;
+  }
 }
 
 /* .action-btn{
@@ -69,18 +101,3 @@
 .action-btn:active {
   transform: translateY(1px);
 }
-
-/* Desktop */
-/* @media (min-width: 768px) {
-  .my-games-scroll {
-    overflow: visible;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .my-games-scroll app-team-card {
-    flex: 0 0 calc(33.333% - 1rem);
-    max-width: calc(33.333% - 1rem);
-    scroll-snap-align: unset;
-  }
-} */

@@ -22,7 +22,7 @@ export class GameCardComponent {
       case 'padel':
         return 'assets/images/sports/padel/padel-field-1.jpeg';
       default:
-        return 'assets/images/default-field.jpeg';
+        return 'assets/images/default-field.jpg';
     }
   }
 
