@@ -2,53 +2,68 @@
   <header class="topbar">
     <app-back-button ariaLabel="Volver" [iconOnly]="true"></app-back-button>
     <h2 class="title">{{ pageTitle }}</h2>
+    <div class="actions" *ngIf="isPlanned() && !hasLocation()">
+      <button class="primary" (click)="toggleAvailabilityPanel()">Ver disponibilidad del rival</button>
+    </div>
   </header>
 
-  <section class="hero" *ngIf="gameCard">
-    <img [src]="gameCard.sport_name === 'tennis' ? 'assets/images/sports/tennis/tennis-field-1.jpeg' : (gameCard.sport_name === 'padel' ? 'assets/images/sports/padel/padel-field-1.jpeg' : 'assets/images/default-field.jpg')" alt="Imagen deporte" />
+  <section class="hero" *ngIf="game">
+    <img [src]="game.sport_name === 'tennis' ? 'assets/images/sports/tennis/tennis-field-1.jpeg' : (game.sport_name === 'padel' ? 'assets/images/sports/padel/padel-field-1.jpeg' : 'assets/images/default-field.jpg')" alt="Imagen deporte" />
     <div class="overlay">
-      <div class="teams">{{ gameCard.team1?.name }} vs {{ gameCard.team2?.name }}</div>
+      <div class="teams">{{ game.team1?.name }} vs {{ game.team2?.name }}</div>
       <div class="meta">
-        <span>{{ (game?.date || gameCard.date) | date: 'EEE d MMM · HH:mm' }}</span>
-        <span>📍 {{ gameCard.location || '-' }}</span>
-        <span>Nivel: {{ gameCard.level || '-' }}</span>
+        <span>{{ game.date | date: 'EEE d MMM · HH:mm' }}</span>
+        <span>📍 {{ game.location || '-' }}</span>
+        <span>Nivel: {{ game.level || '-' }}</span>
       </div>
     </div>
   </section>
 
-  <section class="details" *ngIf="game || gameCard">
+  <section class="details" *ngIf="game">
     <div class="detail-row">
       <span class="label">ID</span>
-      <span class="value">{{ (game?.id || gameCard?.id) }}</span>
+      <span class="value">{{ game.id }}</span>
     </div>
     <div class="detail-row">
       <span class="label">Deporte</span>
-      <span class="value">{{  gameCard?.sport_name || '-' }}</span>
+      <span class="value">{{ game.sport_name || '-' }}</span>
     </div>
     <div class="detail-row">
       <span class="label">Tipo</span>
-      <span class="value">{{ (game?.type || gameCard?.type) ?? '-' }}</span>
+      <span class="value">{{ game.type ?? '-' }}</span>
     </div>
-    <div class="detail-row" *ngIf="gameCard">
+    <div class="detail-row" *ngIf="game">
       <span class="label">Equipo 1</span>
-      <span class="value">{{ gameCard.team1?.name || '-' }}</span>
+      <span class="value">{{ game.team1?.name || '-' }}</span>
     </div>
-    <div class="detail-row" *ngIf="gameCard">
+    <div class="detail-row" *ngIf="game">
       <span class="label">Equipo 2</span>
-      <span class="value">{{ gameCard.team2?.name || '-' }}</span>
+      <span class="value">{{ game.team2?.name || '-' }}</span>
     </div>
     <div class="detail-row">
       <span class="label">Ubicación</span>
-      <span class="value">{{ gameCard?.location || '-' }}</span>
+      <span class="value">{{ game.location || '-' }}</span>
     </div>
-    <div class="detail-row" *ngIf="game?.result">
+    <div class="detail-row" *ngIf="game.result">
       <span class="label">Resultado</span>
-      <span class="value">{{ game?.result }}</span>
+      <span class="value">{{ game.result }}</span>
+    </div>
+    <div class="detail-row" *ngIf="game.team1?.captain_phone">
+      <span class="label">Teléfono capitán (Equipo 1)</span>
+      <span class="value">{{ game.team1?.captain_phone }}</span>
+    </div>
+    <div class="detail-row" *ngIf="game.team2?.captain_phone">
+      <span class="label">Teléfono capitán (Equipo 2)</span>
+      <span class="value">{{ game.team2?.captain_phone }}</span>
     </div>
   </section>
 
+  <div class="actions" *ngIf="isPlanned() && !hasLocation()">
+    <button class="primary" (click)="toggleAvailabilityPanel()">Ver coincidencias de disponibilidad de ambos equipos</button>
+  </div>
   <section *ngIf="showPlanning()" class="card planning">
     <h3>Planificar partido</h3>
+    <p class="info">Este apartado es informativo para revisar la disponibilidad del rival. Selecciona un día y franja para ver su horario habitual. La reserva de pista se gestiona fuera de la app.</p>
     <div class="days scroller-x">
       <button
         *ngFor="let day of availability()"
@@ -68,10 +83,43 @@
         Tarde: {{ selectedAfternoonStart }} - {{ selectedAfternoonEnd }}
       </label>
     </div>
-    <button class="primary" (click)="savePlanning()">Guardar planificación</button>
   </section>
 
-  <section *ngIf="showResult()" class="card result">
+  <section *ngIf="showReservation()" class="card reservation">
+    <h3>Enviar reserva al rival</h3>
+    <div class="form-grid">
+      <label>
+        Centro
+        <select [ngModel]="selectedCenterId" (ngModelChange)="onCenterChange($event)">
+          <option [ngValue]="null">Selecciona centro</option>
+          <option *ngFor="let c of centers" [ngValue]="c.id">{{ c.name }}</option>
+        </select>
+      </label>
+
+      <label>
+        Pista
+        <select [disabled]="!selectedCenterId" [ngModel]="selectedCourt" (ngModelChange)="selectedCourt = $event">
+          <option [ngValue]="null">Selecciona pista</option>
+          <option *ngFor="let p of (selectedCenterId ? courtsByCenter[selectedCenterId] : [])" [ngValue]="p">{{ p }}</option>
+        </select>
+      </label>
+
+      <label>
+        Día
+        <input type="date" [ngModel]="selectedReservationDate" (ngModelChange)="onReservationDateChange($event)" />
+      </label>
+
+      <label>
+        Hora
+        <input type="time" [ngModel]="selectedReservationTime" (ngModelChange)="onReservationTimeChange($event)" />
+      </label>
+    </div>
+
+    <button class="primary" (click)="sendReservationToRival()">Enviar propuesta</button>
+    <p class="hint">La reserva real se realiza fuera de la app. Usa este envío para acordar con el rival.</p>
+  </section>
+
+  <section *ngIf="showResultEntry()" class="card result">
     <h3>Introducir resultado</h3>
 
     <div *ngIf="sportKey === 'padel' || sportKey === 'tennis'" class="sets">
@@ -89,11 +137,19 @@
         <input class="score" type="number" min="0" max="7" placeholder="Equipo 2" [(ngModel)]="setScores()[i].team2">
       </div>
 
-      <button class="primary" (click)="saveResult()">Guardar resultado</button>
+      <button class="primary" (click)="saveResult()">Guardar y enviar validación al rival</button>
     </div>
 
     <div *ngIf="sportKey !== 'padel' && sportKey !== 'tennis'" class="not-implemented">
       Formato de resultado no implementado para este deporte.
+    </div>
+  </section>
+
+  <section *ngIf="showResultInfo()" class="card result readonly">
+    <h3>Resultado</h3>
+    <p class="info">Partido completado. El resultado está confirmado y no se puede modificar.</p>
+    <div class="result-view">
+      <strong>{{ game?.result || '-' }}</strong>
     </div>
   </section>
 </div>

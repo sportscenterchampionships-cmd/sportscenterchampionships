@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BackButtonComponent } from '../../components/back-button/back-button.component';
 import { CompetitionCardComponent } from '../components/competition-card/competition-card.component';
-import { CompetitionCard } from '../../models/app.interface';
+import { Competition } from '../../models/app.interface';
 
 @Component({
   selector: 'app-competition-join',
@@ -21,7 +21,7 @@ export class CompetitionJoinComponent {
     center: '',
   };
 
-  results: CompetitionCard[] = [];
+  results: Competition[] = [];
 
   // store access codes keyed by competition id
   accessCodes: Record<number, string> = {};
@@ -35,49 +35,86 @@ export class CompetitionJoinComponent {
     this.results = [
       {
         id: 101,
-        name: 'Liga Municipal',
-        image: 'assets/images/sample-league-tennis.jpeg',
         sport_id: 2,
-        sport_name: '2',
-        type: 'league',
+        name: 'Liga Municipal',
+        type: 1,
         level: 2,
+        min_teams: null,
+        max_teams: null,
+        min_players_per_team: null,
+        max_players_per_team: null,
         start_date: '2025-02-10',
-        location: 'Polideportivo Sur',
+        end_date: null,
+        location: null,
+        timezone: null,
+        organizer_name: null,
+        organizer_email: null,
+        organizer_phone: null,
         is_open: true,
-        is_private: false,
+        status: 'iniciada',
+        back_to_back: null,
+        allow_draws: true,
+        points_win: 3,
+        points_draw: 1,
+        points_loss: 0,
+        fee_amount: null,
+        fee_currency: null,
+        description: null,
+        rules_url: null,
+        prizes: null,
+        banner_url: null,
+        is_public: true
       },
       {
         id: 202,
-        name: 'Open Padel Invierno',
-        image: 'assets/images/sample-league-padel.jpeg',
         sport_id: 1,
-        sport_name: '1',
-        type: 'tournament',
+        name: 'Open Padel Invierno',
+        type: 2,
         level: 3,
+        min_teams: null,
+        max_teams: null,
+        min_players_per_team: null,
+        max_players_per_team: null,
         start_date: '2025-01-20',
-        location: 'Real Club de Tenis',
+        end_date: null,
+        location: null,
+        timezone: null,
+        organizer_name: null,
+        organizer_email: null,
+        organizer_phone: null,
         is_open: true,
-        is_private: true,
+        status: 'en_espera',
+        back_to_back: null,
+        allow_draws: true,
+        points_win: 3,
+        points_draw: 1,
+        points_loss: 0,
+        fee_amount: null,
+        fee_currency: null,
+        description: null,
+        rules_url: null,
+        prizes: null,
+        banner_url: null,
+        is_public: true,
+        is_private: true
       },
     ];
   }
 
-  requestJoin(competition: CompetitionCard) {
+  requestJoin(competition: Competition) {
     if (!competition.is_open) return;
 
     if (competition.is_private) {
-      const code = this.accessCodes[competition.id];
+      const code = this.accessCodes[competition.id!];
       if (!this.isValidCode(code)) {
         alert('Introduce un código de acceso de 6 cifras');
         return;
       }
-      // TODO: send join request including access code
       console.log('Solicitar inscripción privada', competition, 'code:', code);
       alert(`Solicitud de inscripción enviada a "${competition.name}" con código ${code}`);
       return;
     }
 
-    // pública
     console.log('Solicitar inscripción a la competición', competition);
     alert(`Solicitud de inscripción enviada a "${competition.name}"`);
   }

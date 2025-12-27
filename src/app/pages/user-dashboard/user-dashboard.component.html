@@ -1,17 +1,23 @@
-<header class="dashboard-header">
-  <div class="user-info">
-    <img [src]="user.avatar" class="avatar clickable" (click)="goToProfile()" alt="Avatar" title="Ver perfil" />
-    <div>
-      <h3>Hola, {{ user.name }}</h3>
-      <span class="subtitle">Bienvenido de nuevo</span>
-    </div>
-  </div>
+<!-- Hero header similar to Home -->
+<section class="dashboard-hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <header class="dashboard-header on-hero">
+      <div class="user-info">
+        <img [src]="user.avatar" class="avatar clickable" (click)="goToProfile()" alt="Avatar" title="Ver perfil" />
+        <div>
+          <h3 class="greeting">Hola, {{ user.name }}</h3>
+          <span class="subtitle">Bienvenido de nuevo</span>
+        </div>
+      </div>
 
-  <button class="notif-btn button-like" (click)="goToNotifications()" title="Notificaciones" aria-label="Ir a notificaciones">
-    🔔
-    <span class="badge"></span>
-  </button>
-</header>
+      <button class="notif-btn button-like" (click)="goToNotifications()" title="Notificaciones" aria-label="Ir a notificaciones">
+        🔔
+        <span class="badge"></span>
+      </button>
+    </header>
+  </div>
+</section>
 
 <section class="section">
   <app-my-games [games]="games"></app-my-games>

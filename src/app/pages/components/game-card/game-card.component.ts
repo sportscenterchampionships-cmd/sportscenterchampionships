@@ -1,5 +1,5 @@
 import { Component, Input, inject } from '@angular/core';
-import { GameCard } from '../../../models/app.interface';
+import { Game } from '../../../models/app.interface';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class GameCardComponent {
 
-  @Input() game: GameCard | null = null;
+  @Input() game: Game | null = null;
 
   private router = inject(Router);
 
@@ -28,6 +28,6 @@ export class GameCardComponent {
 
   onOpenGame() {
     if (!this.game) return;
-    this.router.navigate(['/game'], { state: { gameCard: this.game } });
+    this.router.navigate(['/game'], { state: { game: this.game } });
   }
 }

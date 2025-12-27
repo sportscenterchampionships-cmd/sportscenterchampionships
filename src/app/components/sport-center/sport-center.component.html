@@ -1,9 +1,6 @@
 <section class="sport-center-selector container py-2">
   <div class="d-flex align-items-center justify-content-between mb-2">
     <h3 class="m-0">Seleccionar centro</h3>
-    <button type="button" class="btn btn-sm btn-outline-primary" (click)="goToCreateCenter()">
-      + Crear centro
-    </button>
   </div>
 
   <form class="row g-2 mb-3" (ngSubmit)="onSearch()">
@@ -40,7 +37,7 @@
         <option *ngFor="let c of centers" [ngValue]="c.id">{{ c.name }} ({{ c.city }})</option>
       </select>
       <small class="text-muted d-block mt-1" *ngIf="selectedCenterId">
-        <a [href]="centers.find(c=>c.id===selectedCenterId)?.google_maps_url" target="_blank" rel="noopener">Ver en Google Maps</a>
+        <a *ngIf="selectedCenterId && centers.length" [href]="" target="_blank" rel="noopener">Ver en Google Maps</a>
       </small>
     </div>
 
@@ -55,7 +52,7 @@
   </div>
 
   <div class="d-flex gap-2">
-    <button class="btn btn-success" type="button" (click)="confirmSelection()" [disabled]="!selectedCenterId">
+    <button class="btn btn-success" type="button" (click)="confirmSelection()" [disabled]="!selectedCenterId || (showZone && !selectedZoneId)">
       Confirmar selección
     </button>
     <a class="btn btn-outline-secondary" [routerLink]="['/sports-center']">Crear centro</a>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Team, TeamCard } from '../../../models/app.interface';
+import { Team } from '../../../models/app.interface';
 import { TeamCardComponent } from '../team-card/team-card.component';
 import { Router } from '@angular/router';
 
@@ -12,26 +12,24 @@ import { Router } from '@angular/router';
   styleUrl: './my-teams.component.css'
 })
 export class MyTeamsComponent implements OnInit {
-  @Input() teams!: TeamCard[];
+  @Input() teams!: Team[];
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
     if (!this.teams) {
       this.teams = [
-        { id: 1, name: 'Equipo ejemplo', sport_id: 1, sport_name: 'tennis', image: 'assets/images/team-default.png', gender: 'mixed' }
+        { id: 1, name: 'Equipo ejemplo', sport_id: 1, image: 'assets/images/team-default.png', gender: 'mixed', active: true, created_at: '', updated_at: '' }
       ];
     }
   }
 
   // add/new actions
   onCreateTeam() {
-    // navigate to team creation form
     this.router.navigate(['/team']);
   }
 
   onJoinTeam() {
-    // navigate to team join flow
     this.router.navigate(['/team/join']);
   }
 }

@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
-import { TeamCard } from "../../../models/app.interface";
 import { RouterModule } from '@angular/router';
+import { Team } from "../../../models/app.interface";
 
 @Component({
   selector: 'app-team-card',
@@ -11,6 +11,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./team-card.component.css']
 })
 export class TeamCardComponent {
-  @Input() team?: TeamCard;
+  @Input() team?: Team;
   @Input() isAdd = false;
 }

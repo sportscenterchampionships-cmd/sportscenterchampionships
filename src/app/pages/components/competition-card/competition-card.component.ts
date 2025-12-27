@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
-import { CompetitionCard } from "../../../models/app.interface";
+import { Competition } from "../../../models/app.interface";
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./competition-card.component.css']
 })
 export class CompetitionCardComponent {
-  @Input() competition?: CompetitionCard;
+  @Input() competition?: Competition;
   @Input() isAdd = false;
   @Input() isCreator = false;
 
